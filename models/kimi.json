@@ -1,0 +1,198 @@
+{
+  "id": "kimi",
+  "name": "Kimi K3.1 Pro",
+  "folder": "codebuddy_kimi-k3.1-pro",
+  "group": "codebuddy",
+  "raw": 85.0,
+  "implementation": 91.25,
+  "apiPass": 101,
+  "coverage": 12.5,
+  "bugs": 6,
+  "docker": 12.5,
+  "confidence": "중간",
+  "scores": [
+    29.0,
+    16.5,
+    12.5,
+    12.5,
+    9.0,
+    3.0,
+    2.5
+  ],
+  "acceptance": [
+    3,
+    2,
+    35
+  ],
+  "static": [
+    33,
+    5,
+    0,
+    2,
+    0
+  ],
+  "severity": [
+    0,
+    4,
+    2
+  ],
+  "tokens": {
+    "dev": {
+      "input": 28316295,
+      "regular": 634088,
+      "read": 27682207,
+      "write": 0,
+      "output": 143890,
+      "reason": 29430,
+      "total": 28460185
+    },
+    "review": {
+      "input": 23660342,
+      "regular": 698422,
+      "read": 22961920,
+      "write": 0,
+      "output": 64918,
+      "reason": 16331,
+      "total": 23725260
+    },
+    "total": {
+      "input": 51976637,
+      "regular": 1332510,
+      "read": 50644127,
+      "write": 0,
+      "output": 208808,
+      "reason": 45761,
+      "total": 52185445
+    }
+  },
+  "fullTokens": null,
+  "tokenNote": "원본 UI 이미지와 대조한 개발·검토 소계. 보조 agent 포함·중복 관계와 프로젝트 전체 토큰은 미확인.",
+  "time": {
+    "dev": 5565000,
+    "review": 3603000,
+    "total": 9168000
+  },
+  "timeNote": "원본 이미지와 대조한 UI 대표값: 개발92분45초·검토60분3초, 합152분48초. UI 절대 시각·요청 사이 간격·전체 창·순수 AI·입력 대기는 null. 기존 Clock 코드 합142분47초와 전체 창163분은 별도 이력이며 UI에 합산하지 않음.",
+  "position": "품질 기준 우선 파일럿 후보",
+  "strength": "Codebuddy 중 최고 점수 85.0. 화면과 기능별 서비스가 대체로 완성됐다.",
+  "weakness": "가드 뒤 재인가 위험과 쿼리 경계 보완이 필요하다. agent 사용량 중복 여부가 불명확하다.",
+  "order": 60,
+  "pinLast": false,
+  "apiTotal": 112,
+  "groupLabel": "Codebuddy",
+  "presentation": {
+    "tokens": {
+      "label": "관측 소계",
+      "sourceLabel": "UI 소계 · 전체 미확인",
+      "partial": true,
+      "phaseNotes": {
+        "dev": "원본 이미지와 직접 대조한 개발 UI 소계. 보조 agent 포함·중복 관계와 프로젝트 전체는 미확인.",
+        "review": "원본 이미지와 직접 대조한 검토 UI 소계. 별도 agent 표시값과 합산하지 않음."
+      },
+      "missingNote": "usage 미수집",
+      "extras": []
+    },
+    "time": {
+      "label": "UI 관측 구간",
+      "partial": false
+    }
+  },
+  "summary": {
+    "shortName": "Kimi",
+    "rosterNote": "품질 기준 우선 파일럿 후보",
+    "apiNote": "공통 API 검사 결과이며 전체 업무 합격과 구분합니다.",
+    "recommendation": {
+      "label": "우선 검토",
+      "tone": "blue",
+      "action": "조회 경계·최신 권한 재검사 보완",
+      "detail": "일반 CRUD·화면 중심의 내부 파일럿 후보입니다. 쿼리 경계와 재인가를 보완하고 agent 사용량을 분리 수집해야 합니다.",
+      "order": 10
+    }
+  },
+  "efficiencyComparable": false,
+  "acceptanceResults": {
+    "A01": "P/—",
+    "A02": "C/PASS",
+    "A03": "C/—",
+    "A04": "C/—",
+    "A05": "C/PASS",
+    "A06": "C/—",
+    "A07": "C/PASS",
+    "A08": "C/—",
+    "A09": "P/—",
+    "A10": "C/—",
+    "A11": "C/—",
+    "A12": "C/—",
+    "A13": "C/—",
+    "A14": "P/—",
+    "A15": "C/—",
+    "A16": "C/—",
+    "A17": "C/—",
+    "A18": "C/—",
+    "A19": "C/—",
+    "A20": "C/—",
+    "A21": "C/—",
+    "A22": "C/—",
+    "A23": "C/—",
+    "A24": "C/—",
+    "A25": "C/—",
+    "A26": "C/—",
+    "A27": "P/—",
+    "A28": "C/—",
+    "A29": "P/—",
+    "A30": "C/—",
+    "A31": "C/—",
+    "A32": "C/—",
+    "A33": "C/—",
+    "A34": "C/—",
+    "A35": "C/—",
+    "A36": "C/—",
+    "A37": "C/—",
+    "A38": "C/—",
+    "A39": "D/FAIL",
+    "A40": "D/FAIL"
+  },
+  "tokenRows": [
+    [
+      "Kimi K3.1 Pro",
+      "개발 UI",
+      "28,316,295",
+      "634,088",
+      "27,682,207",
+      "0",
+      "143,890",
+      "29,430",
+      "28,460,185",
+      "UI 전사본; agent 범위 미확인"
+    ],
+    [
+      "Kimi K3.1 Pro",
+      "검토 UI",
+      "23,660,342",
+      "698,422",
+      "22,961,920",
+      "0",
+      "64,918",
+      "16,331",
+      "23,725,260",
+      "UI 전사본; agent 범위 미확인"
+    ],
+    [
+      "Kimi K3.1 Pro",
+      "UI 합계",
+      "51,976,637",
+      "1,332,510",
+      "50,644,127",
+      "0",
+      "208,808",
+      "45,761",
+      "52,185,445",
+      "52,185,445; 프로젝트 전체와 구분"
+    ]
+  ],
+  "evidence": [],
+  "provider": {
+    "name": "Moonshot AI",
+    "icon": "assets/providers/moonshot-mark.svg"
+  }
+}

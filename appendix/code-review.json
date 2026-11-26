@@ -1,0 +1,243 @@
+{
+  "title": "AI 코드 리뷰 모델 비교",
+  "sourceDate": "2026-11-20",
+  "sourceFilename": "2026-11-20-model-comparison-report (1).html",
+  "sourceSha256": "7e0d7730e0d70e4b657df30688b96432e8ef77fed2a8686db6681576c41e308f",
+  "reviewCases": 10,
+  "rounds": 2,
+  "confirmedFindings": 151,
+  "highFindings": 6,
+  "reconstructedCases": 5,
+  "models": [
+    {
+      "id": "claude-opus-5-5",
+      "name": "opus-5.5",
+      "provider": {
+        "name": "Anthropic",
+        "icon": "assets/providers/anthropic-mark.svg"
+      },
+      "group": "핵심",
+      "averageFindings": 76.0,
+      "reportedFindingPercent": 50,
+      "averageReviewSeconds": 158,
+      "subscriptionCostCents": 19,
+      "costBasisNote": "주간 한도 0.81%",
+      "openRouterCostCents": 902,
+      "inputTokens": 960000,
+      "outputTokens": 160000,
+      "precisionPercent": 78,
+      "highFindings": [
+        5,
+        4
+      ],
+      "sourceOrder": 0
+    },
+    {
+      "id": "claude-sonnet-5-5",
+      "name": "sonnet-5.5",
+      "provider": {
+        "name": "Anthropic",
+        "icon": "assets/providers/anthropic-mark.svg"
+      },
+      "group": "핵심",
+      "averageFindings": 71.0,
+      "reportedFindingPercent": 47,
+      "averageReviewSeconds": 132,
+      "subscriptionCostCents": 9,
+      "costBasisNote": "주간 한도 0.41%",
+      "openRouterCostCents": 456,
+      "inputTokens": 960000,
+      "outputTokens": 170000,
+      "precisionPercent": 78,
+      "highFindings": [
+        5,
+        5
+      ],
+      "sourceOrder": 1
+    },
+    {
+      "id": "deepseek-v4.1-flash",
+      "name": "deepseek-v4.1-flash",
+      "provider": {
+        "name": "DeepSeek",
+        "icon": "assets/providers/deepseek.png"
+      },
+      "group": "중국 Flash",
+      "averageFindings": 55.0,
+      "reportedFindingPercent": 36,
+      "averageReviewSeconds": 144,
+      "subscriptionCostCents": 207,
+      "costBasisNote": "52 credit",
+      "openRouterCostCents": 50,
+      "inputTokens": 680000,
+      "outputTokens": 260000,
+      "precisionPercent": 71,
+      "highFindings": [
+        2,
+        3
+      ],
+      "sourceOrder": 2
+    },
+    {
+      "id": "gpt-6.2-sol",
+      "name": "6.2-sol",
+      "provider": {
+        "name": "OpenAI",
+        "icon": "assets/providers/openai.svg"
+      },
+      "group": "핵심",
+      "averageFindings": 45.5,
+      "reportedFindingPercent": 30,
+      "averageReviewSeconds": 76,
+      "subscriptionCostCents": 24,
+      "costBasisNote": "주간 한도 1.02%",
+      "openRouterCostCents": 145,
+      "inputTokens": 680000,
+      "outputTokens": 30000,
+      "precisionPercent": 85,
+      "highFindings": [
+        5,
+        4
+      ],
+      "sourceOrder": 3
+    },
+    {
+      "id": "glm-5.3",
+      "name": "glm-5.3",
+      "provider": {
+        "name": "Zhipu",
+        "icon": "assets/providers/zhipu-review.png"
+      },
+      "group": "중국 일반",
+      "averageFindings": 37.0,
+      "reportedFindingPercent": 25,
+      "averageReviewSeconds": 454,
+      "subscriptionCostCents": 673,
+      "costBasisNote": "168 credit",
+      "openRouterCostCents": 237,
+      "inputTokens": 790000,
+      "outputTokens": 300000,
+      "precisionPercent": 74,
+      "highFindings": [
+        1,
+        3
+      ],
+      "sourceOrder": 4
+    },
+    {
+      "id": "hy4-preview",
+      "name": "hy4-preview",
+      "provider": {
+        "name": "Tencent",
+        "icon": "assets/providers/tencent-mark.svg"
+      },
+      "group": "중국 일반",
+      "averageFindings": 30.5,
+      "reportedFindingPercent": 20,
+      "averageReviewSeconds": 622,
+      "subscriptionCostCents": 537,
+      "costBasisNote": "134 credit",
+      "openRouterCostCents": 179,
+      "inputTokens": 700000,
+      "outputTokens": 480000,
+      "precisionPercent": 74,
+      "highFindings": [
+        1,
+        3
+      ],
+      "sourceOrder": 5
+    },
+    {
+      "id": "kimi-k3.1-pro",
+      "name": "kimi-k3.1-pro",
+      "provider": {
+        "name": "Moonshot",
+        "icon": "assets/providers/moonshot-mark.svg"
+      },
+      "group": "중국 일반",
+      "averageFindings": 25.0,
+      "reportedFindingPercent": 17,
+      "averageReviewSeconds": 375,
+      "subscriptionCostCents": 819,
+      "costBasisNote": "205 credit",
+      "openRouterCostCents": 235,
+      "inputTokens": 680000,
+      "outputTokens": 100000,
+      "precisionPercent": 88,
+      "highFindings": [
+        2,
+        3
+      ],
+      "sourceOrder": 6
+    },
+    {
+      "id": "gpt-6.1-terra",
+      "name": "6.1-terra",
+      "provider": {
+        "name": "OpenAI",
+        "icon": "assets/providers/openai.svg"
+      },
+      "group": "핵심",
+      "averageFindings": 22.5,
+      "reportedFindingPercent": 15,
+      "averageReviewSeconds": 19,
+      "subscriptionCostCents": 9,
+      "costBasisNote": "주간 한도 0.41%",
+      "openRouterCostCents": 52,
+      "inputTokens": 630000,
+      "outputTokens": 7000,
+      "precisionPercent": 92,
+      "highFindings": [
+        5,
+        3
+      ],
+      "sourceOrder": 7
+    },
+    {
+      "id": "minimax-m3.1-flash",
+      "name": "minimax-m3.1-flash",
+      "provider": {
+        "name": "MiniMax",
+        "icon": "assets/providers/minimax-review.png"
+      },
+      "group": "중국 Flash",
+      "averageFindings": 20.5,
+      "reportedFindingPercent": 14,
+      "averageReviewSeconds": 114,
+      "subscriptionCostCents": 64,
+      "costBasisNote": "16 credit",
+      "openRouterCostCents": 15,
+      "inputTokens": 630000,
+      "outputTokens": 100000,
+      "precisionPercent": 79,
+      "highFindings": [
+        2,
+        1
+      ],
+      "sourceOrder": 8
+    },
+    {
+      "id": "hy4flash-free",
+      "name": "hy4flash-free",
+      "provider": {
+        "name": "Tencent",
+        "icon": "assets/providers/tencent-mark.svg"
+      },
+      "group": "중국 Flash",
+      "averageFindings": 18.5,
+      "reportedFindingPercent": 12,
+      "averageReviewSeconds": 109,
+      "subscriptionCostCents": 0,
+      "costBasisNote": "무료",
+      "openRouterCostCents": 10,
+      "inputTokens": 670000,
+      "outputTokens": 200000,
+      "precisionPercent": 74,
+      "highFindings": [
+        0,
+        1
+      ],
+      "sourceOrder": 9
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "id": "new-model",
+  "name": "추가할 모델명",
+  "folder": "모델별_프로젝트_폴더",
+  "group": "baseline",
+  "raw": null,
+  "implementation": null,
+  "apiPass": null,
+  "coverage": null,
+  "bugs": null,
+  "docker": null,
+  "confidence": "미수집",
+  "scores": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "acceptance": null,
+  "static": null,
+  "severity": null,
+  "tokens": {
+    "dev": null,
+    "review": null,
+    "total": null
+  },
+  "fullTokens": null,
+  "tokenNote": "usage 자료 미수집",
+  "time": {
+    "dev": null,
+    "review": null,
+    "total": null
+  },
+  "timeNote": "요청 시작·종료 자료 미수집",
+  "position": "평가 자료 미수집",
+  "strength": "미수집",
+  "weakness": "미수집",
+  "order": 70,
+  "pinLast": false,
+  "apiTotal": 112,
+  "groupLabel": "기준 모델",
+  "presentation": {
+    "tokens": {
+      "label": "미수집",
+      "sourceLabel": "미수집",
+      "partial": false,
+      "phaseNotes": {
+        "dev": "usage 자료 미수집",
+        "review": "usage 자료 미수집"
+      },
+      "missingNote": "관측 자료 없음",
+      "extras": []
+    },
+    "time": {
+      "label": "미수집",
+      "partial": false
+    }
+  },
+  "summary": {
+    "shortName": "추가할 모델명",
+    "rosterNote": "평가 자료 미수집",
+    "apiNote": "공통 API 검사 결과이며 전체 업무 합격과 구분합니다.",
+    "recommendation": null
+  },
+  "efficiencyComparable": false,
+  "acceptanceResults": {
+    "A01": null,
+    "A02": null,
+    "A03": null,
+    "A04": null,
+    "A05": null,
+    "A06": null,
+    "A07": null,
+    "A08": null,
+    "A09": null,
+    "A10": null,
+    "A11": null,
+    "A12": null,
+    "A13": null,
+    "A14": null,
+    "A15": null,
+    "A16": null,
+    "A17": null,
+    "A18": null,
+    "A19": null,
+    "A20": null,
+    "A21": null,
+    "A22": null,
+    "A23": null,
+    "A24": null,
+    "A25": null,
+    "A26": null,
+    "A27": null,
+    "A28": null,
+    "A29": null,
+    "A30": null,
+    "A31": null,
+    "A32": null,
+    "A33": null,
+    "A34": null,
+    "A35": null,
+    "A36": null,
+    "A37": null,
+    "A38": null,
+    "A39": null,
+    "A40": null
+  },
+  "tokenRows": null,
+  "evidence": []
+}

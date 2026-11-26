@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#505fe4">
+  <meta name="description" content="동일 HRMS 과제의 일곱 결과물로 살펴본 Codebuddy의 품질, 사용 토큰과 소요 시간. 근거와 도입 조건을 함께 제시합니다.">
+  <title>Codebuddy 보고서</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=1.19.7">
+  <script src="data.js?v=1.19.7" defer></script>
+  <script src="pricing.js" defer></script>
+  <script src="costs.js" defer></script>
+  <script src="app.js?v=1.19.7" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 이동</a>
+  <svg class="icon-sprite" aria-hidden="true"><defs>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h16M8 15v-4m5 4V7m5 8V3"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m3 7 9-4 9 4-9 4-9-4Zm0 5 9 4 9-4M3 17l9 4 9-4"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 8 3v7c0 5-8 10-8 10S4 17 4 12V5l8-3Zm0 5v6m0 3v1"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M3 4h7l2 2 2-2h7v15h-7l-2 2-2-2H3V4Zm9 2v15M6 8h3m6 0h3M6 12h3m6 0h3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18m-13 5h2m4 0h2"/></symbol>
+    <symbol id="i-cost" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="3"/><path d="M3 10h18M7 15h3m7-12v4"/></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><path d="M6 8V3h12v5M6 17H3V9h18v8h-3M6 14h12v7H6v-7Zm11-3h1"/></symbol>
+  </defs></svg>
+
+  <aside class="sidebar" aria-label="보고서 탐색">
+    <div class="brand-row"><a class="brand" href="#overview" aria-label="Codebuddy 보고서 첫 화면"><span class="brand-mark" aria-hidden="true">cb</span><span><strong>Codebuddy</strong><small>경쟁력 분석 리포트</small></span></a><button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="main-nav">목차</button></div>
+    <div class="edition"><span>HRMS 프로젝트 벤치마크</span><strong data-report-date>2026.11.26</strong><small>동일 명세 · <span data-model-count>6</span>개 개발 결과물</small></div>
+    <nav id="main-nav" aria-label="보고서 큰 메뉴">
+      <a href="#overview" data-report-group="overview" class="active" aria-current="page"><svg aria-hidden="true" focusable="false"><use href="#i-grid"/></svg><span>핵심 요약<small>가능성과 도입 조건</small></span></a>
+      <a href="#comparison" data-report-group="performance"><svg aria-hidden="true" focusable="false"><use href="#i-chart"/></svg><span>성능 비교<small>결론 · 완성도·API 통과율 · 토큰·시간</small></span></a>
+      <a href="#costs" data-report-group="cost"><svg aria-hidden="true" focusable="false"><use href="#i-cost"/></svg><span>비용 비교<small>모델별 비용 · Codebuddy 요금제</small></span></a>
+      <a href="#method" data-report-group="adoption"><svg aria-hidden="true" focusable="false"><use href="#i-shield"/></svg><span>도입 판단·근거<small>평가 방법 · 결론</small></span></a>
+      <a href="#appendix" data-report-group="appendix"><svg aria-hidden="true" focusable="false"><use href="#i-book"/></svg><span>부록<small>코드 리뷰 벤치마크</small></span></a>
+    </nav>
+    <div class="sidebar-footer"><strong>판단을 위한 근거 중심 보고서</strong><p>수집 범위와 한계 공개<br>단일 실행의 최신 결과 비교</p><a href="#sources">원문 보고서 확인</a></div>
+  </aside>
+
+  <main id="main" tabindex="-1">
+    <div class="topline"><span id="view-breadcrumb">벤치마크 / 핵심 요약</span><button class="button button-quiet" id="print-button"><svg aria-hidden="true" focusable="false"><use href="#i-print"/></svg>인쇄 / PDF 저장</button></div>
+    <nav id="section-nav" class="section-nav" aria-label="상세 메뉴" hidden></nav>
+    <section id="overview" class="section overview" aria-labelledby="report-title">
+      <div class="eyebrow"><span class="badge badge-blue">의사결정 브리프</span><span>HRMS · 품질 × 토큰 × 시간</span></div>
+      <h1 id="report-title">Codebuddy 보고서</h1>
+      <p class="lead">중국계 LLM의 개발 결과는 주력 모델에 얼마나 가까운가.<br class="desktop-break"> 동일한 HRMS 과제의 <span data-model-count>6</span>개 결과물로 가능성과 조건을 함께 살펴봅니다.</p>
+      <section class="project-intro" aria-labelledby="project-intro-title">
+        <div class="project-intro-heading"><span class="project-intro-mark" aria-hidden="true"><svg><use href="#i-layers"/></svg></span><h2 id="project-intro-title">벤치마킹 프로젝트(HRMS)에 대해서</h2><span class="project-intro-meta"><span data-model-count>6</span>개 모델 · 동일 명세</span></div>
+        <p>직원·조직 정보부터 출퇴근과 연차 신청·승인까지, 일상적인 인사 업무를 한곳에서 처리하는 사내용 웹 인사관리 프로그램입니다. 아래 기능을 공통 개발 범위로 두고 모델별 구현 결과를 비교했습니다.</p>
+        <ul class="project-features" aria-label="공통 개발 기능">
+          <li><svg aria-hidden="true"><use href="#i-grid"/></svg><strong>인사·조직</strong><span>직원·부서·직위 관리</span></li>
+          <li><svg aria-hidden="true"><use href="#i-shield"/></svg><strong>인증·권한</strong><span>로그인·역할별 접근</span></li>
+          <li><svg aria-hidden="true"><use href="#i-clock"/></svg><strong>근태 관리</strong><span>출퇴근 등록·기록 조회</span></li>
+          <li><svg aria-hidden="true"><use href="#i-calendar"/></svg><strong>연차 관리</strong><span>잔액·신청·승인·반려</span></li>
+          <li><svg aria-hidden="true"><use href="#i-chart"/></svg><strong>현황·이력</strong><span>대시보드·변경 이력</span></li>
+        </ul>
+      </section>
+      <div class="summary-panel summary-showcase">
+        <div class="summary-copy"><span class="overline">핵심 판단</span><h2>품질의 가능성은 확인했습니다.<br>활용 조건은 모델마다 다릅니다.</h2><p>Kimi·HY4는 보완 후 제한된 파일럿 후보입니다. DeepSeek·Balanced는 직원 정보 접근 범위와 핵심 업무부터 보완해야 합니다.</p></div>
+        <aside class="summary-aside" aria-label="평가 조건"><span class="badge badge-outline">잠정 평가 · 표본 각 1개</span><p>최신 결과물의 품질과 기록된 개발 사용량을 비교했습니다. 실행 환경·수정 예산·캐시 조건을 통제한 실험은 아닙니다.</p><a class="text-link" href="#method">평가 범위와 한계 읽기</a></aside>
+        <section class="benchmark-models" aria-labelledby="benchmark-models-title">
+          <div class="benchmark-models-heading"><h3 id="benchmark-models-title">Codebuddy 선택 모델·모드</h3><span>동일한 HRMS 과제로 비교</span></div>
+          <ul id="benchmark-model-list" class="benchmark-model-list"></ul>
+          <div id="benchmark-reference" class="benchmark-reference"></div>
+        </section>
+      </div>
+      <div id="overview-metrics" class="kpi-grid overview-metrics"></div>
+      <p class="source-note">근거: 완성도 보고서 3·4절, 사용량 자료의 토큰·시간 표.</p>
+    </section>
+
+    <section id="quality" hidden class="section" aria-labelledby="quality-title">
+      <div class="section-heading"><div><span class="overline">완성도·API 통과율</span><h2 id="quality-title">점수와 검증을 나란히 봅니다</h2><p>같은 배점으로 평가한 현재 결과물입니다. Codebuddy 모델 사이에서도 차이가 큽니다.</p></div><span class="section-tag">완성도 보고서 2–8절</span></div>
+      <figure class="chart-panel quality-panel"><figcaption><strong id="quality-chart-title">완성도 점수·API 통과율</strong><span id="quality-chart-unit">프로젝트 순 고정 · Balanced 마지막</span></figcaption>
+        <div class="chart-legend"><span><i class="swatch quality-score"></i>완성도 점수</span><span><i class="swatch quality-api"></i>API 통과율</span></div>
+        <div id="score-chart" class="token-chart quality-chart" role="region" aria-label="모델별 완성도 점수와 API 통과율을 함께 비교하는 막대 그래프"></div>
+        <p id="quality-chart-note" class="chart-note">점수는 100점 만점, API 통과율은 실행한 공통 검사의 통과 비율입니다.</p>
+        <details><summary>점수와 API 통과율을 읽는 기준</summary><div class="details-body"><p>완성도 점수는 품질·정확성·보안·인프라·UI·코드·검증을 함께 검토한 평가입니다. API 통과율은 조회·입력 경계·권한 등 공통 HTTP 검사 중 실행한 항목의 결과입니다. 공통 검사112개 중 Balanced는111개 실행·1개 미실행이며, 나머지는112개를 실행했습니다. 미실행은 실패로 계산하지 않습니다. 두 지표는 같은 0–100 눈금을 사용하지만 서로 다른 의미이며 합산하지 않습니다. 순위는 완성도 점수가 높은 순서입니다.</p><p>API 성공만으로 HY4의 직원 화면 중단 같은 문제를 모두 확인할 수 없습니다. 두 지표 모두 A01~A40 전체 인수 합격을 뜻하지 않습니다.</p></div></details>
+      </figure>
+      <div class="table-heading"><h3>완성도 요약 비교</h3><span>좁은 화면에서는 표 안을 가로로 이동할 수 있습니다.</span></div>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="완성도 요약 비교표, 가로 스크롤"><table id="quality-table"><caption class="sr-only">100점 만점 점수, API 통과율과 독립 인수 범위</caption></table></div>
+      <div class="note note-blue"><strong>숫자를 읽는 기준</strong><p>정적 구현 추정율은 코드에서 확인한 A항목 기반 대리지표입니다. 실제 인수 합격률과 다릅니다. 독립 A 검증 커버리지는 7.5–20.0%이며, 전체 하위 시나리오 실행률을 뜻하지 않습니다. GPT-6.1-sol도 전체 인수 <code>success=null</code>입니다.</p></div>
+      <div class="model-explorer"><div class="explorer-header"><div><h3>모델별 점수와 해석</h3><p>점수의 7개 구성 영역을 확인하세요.</p></div><label>상세 모델<select id="model-select"></select></label></div><div id="model-detail" aria-live="polite"></div></div>
+      <details><summary>전체 영역별 점수표와 40개 인수 기준 펼치기</summary><div class="details-body"><div id="area-table" class="table-wrap" tabindex="0" role="region" aria-label="영역별 점수표"></div><p class="chart-note">A항목 표의 C=정적 충족 추정, P=부분, M=누락, D=위반, —=독립 NOT_RUN. C를 실행 PASS로 바꾸지 않았습니다.</p><div id="acceptance-table" class="table-wrap acceptance-wrap" tabindex="0" role="region" aria-label="A01에서 A40 구현과 독립 인수 판정표"></div></div></details>
+    </section>
+
+    <section id="usage" hidden class="section" aria-labelledby="usage-title">
+      <div class="section-heading"><div><span class="overline">토큰·소요 시간</span><h2 id="usage-title">사용량은 수집 범위가 먼저입니다</h2><p>반복 전송된 캐시 문맥도 토큰에 포함됩니다. 관측 토큰은 요청 범위·캐시·보조 agent 포함 관계와 함께 해석해야 합니다.</p></div><span class="section-tag">사용량 보고서 1–3절</span></div>
+      <figure class="chart-panel compact-chart"><figcaption><strong>개발·검토 토큰 구성 비교</strong><span>번호: 표시 합계가 적은 순 / 미수집 제외 · Balanced 마지막</span></figcaption><div class="chart-legend token-legend"><span><i class="swatch regular"></i>일반 입력</span><span><i class="swatch cache"></i>캐시 읽기</span><span><i class="swatch write"></i>캐시 쓰기</span><span><i class="swatch output"></i>출력</span></div><div id="token-chart" class="token-chart compact-totals" role="region" aria-label="모델별 개발과 검토 토큰을 함께 비교하는 막대 그래프"></div><p class="chart-note">합계는 개발+검토 막대의 합이며, 1M은 100만 토큰입니다.</p>
+      <details class="token-explanation"><summary>관측값·관측 소계와 순위 기준</summary><div class="details-body">
+        <p><strong>관측값</strong>은 정해진 수집 범위의 기록에서 확인한 토큰 수입니다. GPT-6.1-sol과 Opus 5.5는 개발·검토 요청 기록을 합산했습니다. DeepSeek는 모델·시간창 기준 집계이므로 해당 프로젝트 요청만 포함하는지는 추가 확인이 필요합니다.</p>
+        <p><strong>관측 소계</strong>는 확인한 기록을 더했지만 누락이나 포함 범위의 불확실성이 남아 있는 값입니다. HY4는 실패·취소 7건의 usage가 미수집이고, Kimi는 보조 agent의 포함·중복 관계가 불명확합니다. Balanced는 개발자 UI 전사의 기록 소계로, 산술은 확인했지만 원본 화면·전체 호출 포괄은 미대조입니다. 차이는 집계 범위를 얼마나 확인했는지에 있습니다.</p>
+        <p><strong>번호</strong>는 화면에 표시한 개발+검토 합계가 적은 순서입니다. 미수집 모델은 제외하며, 수집 범위가 달라 모델 자체의 효율 순위로 해석하지 않습니다.</p>
+        <p><strong>합산 기준</strong>에서 추론은 출력의 부분집합이므로 다시 더하지 않습니다. HY4의 단계 미분류 W2 6,425,363토큰은 두 막대의 합계에서 제외하며, W2 포함 관측 합은 모델별 ‘수집 범위와 한계’에 표시합니다.</p>
+      </div></details></figure>
+      <details><summary>개발·검토·합계의 정확한 토큰 수와 출처 정의</summary><div class="details-body"><p>전체 입력 IT = 일반 입력 I + 캐시 읽기 R + 별도 캐시 쓰기 W. OpenAI/Codebuddy는 캐시 포함 입력을 분해했고, Anthropic의 캐시 제외 input에는 캐시를 한 번 더했습니다. 추론 0은 기록 필드값이며 실제 미사용의 증명은 아닙니다.</p><div id="token-table" class="table-wrap" tabindex="0" role="region" aria-label="토큰 종류별 정확한 상세 비교표"></div></div></details>
+      <figure class="chart-panel time-panel compact-chart"><figcaption><strong>개발에서 검토 결과까지 걸린 시간</strong><span>번호: 표시 구간 합이 짧은 순 / 미수집 제외 · Balanced 마지막</span></figcaption>
+        <div class="chart-legend"><span><i class="swatch time-dev"></i>개발</span><span><i class="swatch time-review"></i>검토</span></div>
+        <div id="time-chart" class="token-chart time-chart compact-totals" role="region" aria-label="모델별 개발과 검토 경과시간을 함께 비교하는 막대 그래프"></div>
+        <p class="chart-note">개발·검토는 같은 분 단위 눈금으로 표시합니다. 합계는 두 구간의 합이며 요청 사이 공백은 제외합니다.</p>
+        <details><summary>시간과 순위를 읽는 기준</summary><div class="details-body">
+          <p><strong>경과시간은 순수 AI 작업시간과 다릅니다.</strong> 모델 생성 외 빌드·도구·자체 검증 등을 포함할 수 있습니다. GPT-6.1-sol의 순수 작업·입력 대기 분리는 미수집입니다. Opus 5.5의 대기 0은 개발자 transcript 재구성 기준이며, 도구 없는 시간을 사람 대기로 간주하지 않았습니다.</p>
+          <p><strong>측정 경계가 서로 다릅니다.</strong> HY4는 부분 관측창이며 전체 요청 시작·종료는 미확인입니다. Kimi는 원본 이미지와 대조한 UI 개발92분45초·검토60분3초를 대표값으로 표시하며, 기존 Clock 합과의10분1초 차이는 별도 이력입니다. Balanced는 새 실행의 기록상 개발53분·검토25분15초를 표시합니다. 점선 막대는 부분 관측창 또는 개발자 기록입니다.</p>
+          <p><strong>번호는 표시한 개발·검토 구간 합이 짧은 순서입니다.</strong> 측정 범위가 달라 모델 자체의 속도·효율 순위로 해석하지 않습니다. 분 표시는 소수 둘째 자리로 반올림하며, 정확한 시간과 모델별 근거를 함께 제공합니다.</p>
+        </div></details>
+      </figure>
+      <details><summary>개발·검토의 정확한 시간과 측정 근거</summary><div class="details-body"><div id="time-table" class="table-wrap" tabindex="0" role="region" aria-label="개발 검토 경과시간 비교표"></div></div></details>
+    </section>
+
+    <section id="comparison" hidden class="section" aria-labelledby="comparison-title">
+      <div class="section-heading"><div><span class="overline">결론</span><h2 id="comparison-title">완성도와 토큰·시간을 함께 봅니다</h2><p>관측 범위가 다른 수치를 하나의 효율 순위로 묶지 않습니다.</p></div><span class="section-tag">완성도·사용량 자료</span></div>
+      <div class="comparison-bridge"><div><h3>성능 비교 요약</h3></div><div id="value-matrix" class="table-wrap" tabindex="0" role="region" aria-label="성능 비교 요약: 점수와 API 통과율, 토큰 사용량과 소요 시간"></div></div>
+      <details><summary>모델별 활용 판단과 수집 범위</summary><div class="details-body"><p>토큰 사용량은 확보한 기록의 합이며, 모델별 포함 범위가 다릅니다. 소요 시간은 기존 구간 합에서 초 단위를 생략했습니다.</p><div id="comparison-notes" class="comparison-notes"></div></div></details>
+      <details><summary>비교 가능한 기준 모델의 보조 효율 지표</summary><div class="details-body"><p>효율 비교가 가능한 관측 범위를 확보한 모델에만 적용합니다. 캐시·도구·개발일 차이를 통제한 인과 비교나 전체 모델의 효율 순위가 아닙니다.</p><div id="efficiency-table" class="table-wrap" tabindex="0" role="region" aria-label="기준 모델 보조 효율 지표"></div><p class="formula">점수 / 100만 토큰 = 점수 × 1,000,000 ÷ 관측 토큰<br>점수 / 1시간 = 점수 × 3,600,000 ÷ 두 요청 경과 ms 합</p><p class="chart-note">Codebuddy 모델은 추정·누락·시간창 귀속·agent 범위 차이 때문에 같은 효율 순위에서 제외했습니다. 적은 토큰과 빠른 개발은 서로 다른 지표입니다.</p></div></details>
+    </section>
+
+    <section id="costs" hidden class="section cost-page" aria-labelledby="costs-title">
+      <div class="section-heading"><div><span class="overline">비용</span><h2 id="costs-title">모델별 비용</h2><p>모델별 크레딧·토큰 기록에 해당 계산 기준을 적용했습니다.</p></div><span class="section-tag">USD · 비교용 환산</span></div>
+      <div id="cost-sections" class="cost-sections"></div>
+      <details class="cost-evidence"><summary>계산 기준과 사용량 근거</summary><div class="details-body">
+        <div class="cost-method-grid"><article><h4>크레딧 기준 모델</h4><p>DeepSeek·HY4·Kimi·Balanced는 ‘보고서_사용량.md’의 HRMS 개발·검토 크레딧에 <strong>$40 ÷ 선택한 지급 크레딧량</strong>을 적용합니다. 기본 1,000에 보너스 1,000, 활동 보너스 최대 1,500을 각각 더하는 비교 가정입니다. 활동 보너스는 30일 조건 충족 기준이며 실제 요금제별 지급 보장을 뜻하지 않습니다. 기록된 사용 크레딧은 그대로 유지하며, 비용 화면의 두 옵션은 요금제 화면과 독립적으로 동작합니다.</p></article><article><h4>토큰 기준 모델</h4><p>GPT·Opus는 사용자가 제공한 <strong>구독요금 ÷ (주당 토큰 지급량 × 4.3주)</strong> 산정 기준과 지정 단가를 사용합니다. Opus는 <strong>$0.214/1M</strong>, GPT는 <strong>$0.3145/1M</strong>이며, 개발·검토 각각의 합계 토큰 ÷ 1M × 단가로 계산합니다. 주당 표시량을 그대로 계산하면 Opus 약 $0.213356, GPT 약 $0.314268이지만, 이 화면의 적용 단가는 요청한 지정값을 유지합니다. 실제 청구액이나 보장된 최저가를 뜻하지 않습니다.</p></article></div>
+        <div id="cost-rate-table" class="table-wrap" tabindex="0" role="region" aria-label="모델별 계산 기준과 사용량 근거"></div>
+        <div id="cost-detail-table" class="table-wrap" tabindex="0" role="region" aria-label="모델별 크레딧 또는 토큰 비용 계산 상세"></div>
+        <ul class="cost-limit-list"><li>크레딧은 현재 토큰 그래프와 같은 개발·검토 범위로 맞췄습니다. HY4 W2 미분류·W4 문서, 별도 UI, 포함·중복 미확인 agent 소비는 합산하지 않습니다.</li><li>기록된 관측 범위의 환산액이며 실제 청구액·프로젝트 전체 비용은 미확인입니다. 토큰 기준 모델은 사용자 지정 단가를 캐시 포함 합계 토큰에 적용합니다. 과거 리뷰 시험의 한도 사용률 배분 단가는 현재 비용 계산에 사용하지 않습니다.</li></ul>
+        <a class="button cost-source-link" href="sources/보고서_크레딧.html">HRMS 크레딧 자료 보기</a>
+        <a class="button cost-source-link" href="sources/보고서_토큰가격.html">토큰 가격 자료 보기</a>
+      </div></details>
+    </section>
+
+    <section id="plans" hidden class="section cost-page" aria-labelledby="plans-title">
+      <div class="section-heading"><div><span class="overline">Codebuddy 요금제</span><h2 id="plans-title">한 달 비용을 같은 기준으로 비교합니다</h2><p>Personal Pro 1명과 Business Team 1좌석을 비교합니다.</p></div><span class="section-tag">USD · 월 기준</span></div>
+      <div class="plan-options" role="group" aria-label="요금제 비교 옵션"><div><strong>비교 옵션</strong><span>기본값: 월 결제 · 프로모션·보너스 제외</span></div><div class="plan-option-buttons"><button id="plan-promotion" class="plan-toggle" type="button" aria-pressed="false" aria-controls="plan-results"><span class="plan-toggle-mark" aria-hidden="true"></span><span class="plan-toggle-label">프로모션</span><span class="plan-toggle-state" aria-hidden="true">미적용</span></button><button id="plan-yearly" class="plan-toggle" type="button" aria-pressed="false" aria-controls="plan-results"><span class="plan-toggle-mark" aria-hidden="true"></span><span class="plan-toggle-label">연간 구독 할인</span><span class="plan-toggle-state" aria-hidden="true">미적용</span></button><button id="plan-bonus" class="plan-toggle" type="button" aria-pressed="false" aria-controls="plan-results"><span class="plan-toggle-mark" aria-hidden="true"></span><span class="plan-toggle-label">보너스 크레딧</span><span class="plan-toggle-state" aria-hidden="true">미적용</span></button></div></div>
+      <p class="plan-basis-note">Pro의 할인 제외 <strong>$20/월은 취소선 참고값</strong>이며 정상 청구가는 미확인입니다. 프로모션을 켜면 문서의 Pro 표시가 <strong>$10/월</strong>을 적용합니다. Team은 $40/좌석·월로 동일합니다.</p>
+      <div id="plan-results" class="plan-results" aria-live="polite" aria-atomic="true"></div>
+      <p class="plan-credit-note">제공량은 <strong>크레딧</strong>입니다. Pro는 30일 활동 조건 충족 기준 최대값, Team은 확인된 월 정기 제공량입니다.</p>
+      <details class="plan-evidence"><summary>가격·할인·보너스의 적용 기준</summary><div class="details-body"><ul class="plan-detail-list"><li><strong>기본 비교:</strong> Pro는 문서10절의 할인 제외 참고값 $20/월, Team은 $40/좌석·월입니다. 기본 제공량은 각각 월1,000크레딧이며 세 옵션은 처음에 꺼져 있습니다.</li><li><strong>프로모션:</strong> 월 결제 Pro에 문서의 표시가$10을 적용합니다. Team의 월 요금은$40으로 유지합니다. 연간구독을 함께 켜면 기존 연 결제 표시가인 Pro 월 환산$8·연$96을 사용하며 가격 할인을 중복 적용하지 않습니다.</li><li><strong>연간구독:</strong> 문서2절의 연 결제 표시가를 사용합니다. Pro는 연$96(월 환산$8), Team은 연$480/좌석(월 환산$40)입니다. Pro의20% 할인은 표시 월 가격$10 대비이며 취소선 참고값$20 대비 할인율이 아닙니다. Team의 연 할인율은0%입니다.</li><li><strong>보너스:</strong> 옵션을 켜면 Pro·Team 모두 월1,000크레딧을 한 번만 더해 각각 월2,000크레딧을 표시합니다. Team은 기간 한정 프로모션이며, Pro는 문서에 한정 표시가 없지만 지속 여부는 미확인입니다. 연 결제라도 월 단위 지급량을 표시합니다.</li><li><strong>일일 활동:</strong> Pro는 보상 대상 활동일당50크레딧이 별도로 표시되어 있습니다. Pro는 기본 + 30일 활동보상 + 선택 보너스 순서로 최대 합계를 표시합니다. 30일 모두 보상 조건을 충족하면50×30=1,500크레딧이 추가되어 보너스 제외2,500·포함3,500크레딧이며 실제 잔액·보장 지급량은 아닙니다. Team의 일일 보상은 미표기입니다.</li></ul></div></details>
+      <details class="plan-evidence"><summary>주요 기능과 확인이 필요한 조건</summary><div class="details-body"><div class="plan-feature-grid"><article><h3>Personal Pro</h3><p>전체 모델 접근, 무제한 코드 자동 완성, 자동화 작업15개, 전문가·스킬·커넥터, 여러 파일 이해와 주석 기반 코드 생성이 명시되어 있습니다.</p></article><article><h3>Business Team</h3><p>SSO, 조직·구독·구성원 사용량 관리, 기업용 스킬·전문가·모델 구성, 보안·감사, OpenAPI 접근과 기업용 추가 충전 팩이 명시되어 있습니다.</p></article></div><p class="chart-note">Team의 일반 개발 기능 한도와 최소 좌석 수는 자료에 미표기입니다. 세금·환율·갱신·보너스 유효기간도 미확인입니다. OpenAPI 접근은 OpenAI API 제공과 다른 항목입니다.</p></div></details>
+      <div class="plan-source"><span>사용자 제공 문서 · 2026.11.25 작성 · 실시간 요금 미조회</span><a class="button" href="sources/보고서_요금제.html">요금제 자료 보기</a></div>
+    </section>
+
+    <section id="method" hidden class="section adoption-page" aria-labelledby="method-title">
+      <div class="section-heading"><div><span class="overline">평가 방법·근거</span><h2 id="method-title">같은 과제, 공통 검사, 100점 평가</h2><p><span data-model-count>6</span>개 모델의 최신 개발 결과물을 소스·API·브라우저로 확인했습니다.</p></div></div>
+      <div class="adoption-method-grid">
+        <article><svg aria-hidden="true"><use href="#i-book"/></svg><h3>같은 개발 과제</h3><p>HRMS 공통 명세로 만든<br>프로젝트 <span data-model-count>6</span>개를 비교</p></article>
+        <article><svg aria-hidden="true"><use href="#i-check"/></svg><h3>공통 실행 검사</h3><p>공통 API 112개 기준<br>미실행은 별도 표시</p></article>
+        <article><svg aria-hidden="true"><use href="#i-chart"/></svg><h3>100점 만점</h3><p>기능·보안·UI 등<br>7개 영역의 잠정 평가</p></article>
+      </div>
+      <p class="adoption-caveat">모델별 결과물은 각 1개입니다. 점수와 API 통과율이 전체 인수 합격을 의미하지는 않습니다.</p>
+      <details class="adoption-evidence"><summary>평가 범위와 미실행 항목</summary><div class="details-body"><ul class="adoption-detail-list"><li><strong>공통 명세:</strong> HRMS.md 1.9 · R8. 루트와 비교 대상 6개 사본의 SHA-256이 일치합니다.</li><li><strong>평가 시점과 범위:</strong> 기존5개는11월24일 평가를 보존했습니다. Balanced는11월25일 직접 텍스트93개와 실행 환경을 확인했습니다. 공통 HTTP111개 실행·1개 미실행이며 화면은1440px에서 확인했습니다. 전체 역할·변경 흐름은 미검증입니다. 기존 JUnit XML과 개발자 PASS 주장은 독립 실행 결과와 구분했습니다.</li><li><strong>점수 해석:</strong> 소스·설정·화면을 함께 검토한 정성 점수입니다. Opus 5.5와 GPT-6.1-sol의 1점 차이는 유지보수성 판단에 민감합니다. 기반 모델 전체의 성능을 증명하는 통계 실험은 아닙니다.</li><li><strong>미실행:</strong> 유효한 인사·근태·연차 변경, 동시성, 장애 복구, 새 볼륨 기동, 전체 역할 UI. 미검증을 PASS로 처리하지 않았습니다.</li></ul></div></details>
+      <details class="adoption-evidence"><summary>배점과 계산식</summary><div class="details-body"><div id="weight-grid" class="weight-grid"></div><p class="formula">API 통과율 = PASS ÷ 실행 수(미실행 제외) · A 검증 커버리지 = (PASS + FAIL) ÷ 40<br>정적 구현 추정율 = (C + 0.5 × P + 0.5 × D) ÷ 40</p></div></details>
+      <details class="adoption-evidence"><summary>토큰·시간의 수집 한계</summary><div class="details-body"><div id="limits-table" class="table-wrap" tabindex="0" role="region" aria-label="기록 불일치와 수집 한계"></div></div></details>
+      <div id="sources" class="source-panel adoption-sources"><div><h3>근거 자료</h3><p><span data-report-date>2026.11.26</span> 기준 · 완성도와 토큰·시간 웹 제공 자료</p><div class="source-buttons"><a class="button" href="sources/보고서_완성도.html">완성도 자료</a><a class="button" href="sources/보고서_사용량.html">토큰·시간 자료</a></div></div></div>
+    </section>
+
+    <section id="decision" hidden class="section decision adoption-page" aria-labelledby="decision-title">
+      <div class="section-heading"><div><span class="overline">결론과 다음 단계</span><h2 id="decision-title">보완 후, 작은 파일럿부터</h2><p>필수 결함을 수정하고 검증을 통과한 업무부터 시험 적용합니다.</p></div></div>
+      <div id="adoption-recommend-grid" class="adoption-recommend-grid"></div>
+      <div class="adoption-next"><h3>다음 실행 순서</h3><ol><li><strong>필수 결함 보완</strong><span>권한·핵심 화면·업무 규칙 수정</span></li><li><strong>업무 흐름 검증</strong><span>역할별 동작·동시성·복구 확인</span></li><li><strong>제한된 파일럿</strong><span>검증한 업무에서 반복 사용·측정</span></li></ol></div>
+      <details class="adoption-evidence"><summary>모델별 적용 조건</summary><div class="details-body"><ul id="adoption-model-conditions" class="adoption-detail-list"></ul></div></details>
+      <details class="adoption-evidence"><summary>다음 비교 실험의 공통 조건</summary><div class="details-body"><ul class="adoption-detail-list"><li>동일 입력·호스트·수정 예산과 모델·추론 설정 고정</li><li>캐시·보조 agent·실패 호출을 포함한 요청별 토큰과 경과시간 수집</li><li>격리 DB·고정 Clock·동시성·장애·역할별 전체 UI 인수 시험</li><li>반복 실행과 결함 수정·재검증에 필요한 작업 시간 비교</li></ul><p>현재 자료는 개발 활용 가능성을 보여주는 단일 실행 평가입니다. 주력 모델과의 품질 차이와 업무별 활용 조건은 후속 실험으로 확인해야 합니다.</p></div></details>
+    </section>
+    <section id="appendix" hidden class="section appendix-page" aria-labelledby="appendix-title">
+      <div class="section-heading"><div><span class="overline">부록</span><h2 id="appendix-title">코드 리뷰 모델 벤치마크</h2><p>같은 리뷰 10건을 두 차례 비교한 기록입니다. 비용과 발견 건수, 시간을 함께 확인합니다.</p></div><span class="section-tag">2026.11.20 · 별도 리뷰 시험</span></div>
+      <section class="appendix-highlight" aria-labelledby="review-conclusion-title">
+        <span class="review-conclusion-label">핵심 결론</span>
+        <h3 id="review-conclusion-title" class="review-conclusion-title"><span class="review-plan-core"><strong class="model-identity"><img class="model-icon" src="assets/providers/anthropic-mark.svg" width="24" height="24" alt=""><span>Claude</span></strong><span aria-hidden="true">+</span><strong class="model-identity"><img class="model-icon" src="assets/providers/openai.svg" width="24" height="24" alt=""><span>ChatGPT</span></strong></span><span>교차 리뷰 유지</span></h3>
+        <div class="review-plan-row"><span class="review-plan-label">보조 리뷰 유지</span><div class="review-plan-support"><span class="model-identity"><img class="model-icon" src="assets/providers/deepseek.png" width="18" height="18" alt=""><span>DeepSeek Flash</span></span><span class="model-identity"><img class="model-icon" src="assets/providers/minimax-review.png" width="18" height="18" alt=""><span>MiniMax Flash</span></span><span class="model-identity"><img class="model-icon" src="assets/providers/tencent-mark.svg" width="18" height="18" alt=""><span>HY4 Flash</span> <small>무료</small></span></div></div>
+        <p class="review-cost-reference"><span>비용 참고</span>핵심 모델의 리뷰 10건 구독 환산액 <strong>$0.09 ~ $0.24</strong><span>· 추정치</span></p>
+      </section>
+      <div class="table-heading"><h3>모델별 리뷰 비교</h3><span>OpenAI · Anthropic · Codebuddy 순</span></div>
+      <div id="review-benchmark-table" class="table-wrap" tabindex="0" role="region" aria-label="코드 리뷰 모델별 발견 건수·시간·구독 환산액 비교"></div>
+      <div class="review-table-guide" aria-label="표 읽는 방법"><span><strong>탐지율 ↑</strong> 높을수록 더 많은 문제를 발견</span><span><strong>환산액 ↓</strong> 낮을수록 비용 부담이 적음</span></div>
+      <p class="appendix-table-note">탐지율 막대는 100%, 비용 막대는 최대 환산액을 기준으로 표시합니다. 순위는 탐지율이 높은 순·환산액이 낮은 순이며, 같은 값은 공동 순위입니다. 괄호 안은 평균 발견 건수이며, 발견 건수·시간은 두 회차의 평균입니다. 구독 환산액은 리뷰 10건 1회 기준의 추정치이며, HRMS 개발·검토 비용과는 별도입니다.</p>
+      <div class="appendix-takeaways" aria-label="원문 핵심 판단">
+        <article><span class="badge badge-blue">교차 리뷰</span><h3>발견 범위와 정밀도를 함께</h3><p>Claude는 더 많이 찾았고, ChatGPT는 정밀도가 높고 빨랐습니다. 두 회사 모델의 교차 검토를 유지했습니다.</p></article>
+        <article><span class="badge badge-teal">보조 모델</span><h3>DeepSeek의 추가 발견</h3><p>Claude·ChatGPT가 찾은 131건에 DeepSeek가 13건을 더했습니다. Flash 모델 3개는 보조 리뷰에 유지했습니다.</p></article>
+        <article><span class="badge badge-neutral">도입 판단</span><h3>일반 모델은 후보에서 제외</h3><p>비교한 중국 일반 모델 3개는 DeepSeek보다 느리고 비쌌으며, 발견 건수도 적었습니다.</p></article>
+      </div>
+      <details><summary>발견 품질·토큰 사용량·종량제 참고액</summary><div class="details-body"><p>정밀도는 낸 지적 중 실제 문제로 확인된 비율입니다. HIGH 이상은 확정된 6건 중 각 회차에서 찾은 건수이며, 입력·출력과 OpenRouter 참고액은 리뷰 10건 1회 기준입니다.</p><div id="review-detail-table" class="table-wrap" tabindex="0" role="region" aria-label="코드 리뷰 정밀도와 HIGH 발견·토큰·비용 산정 상세"></div></div></details>
+      <details><summary>비용 산정 기준</summary><div class="details-body appendix-method">
+        <article><h4>Claude·ChatGPT 구독</h4><p>원문의 팀 Premium 좌석 월 $100 ÷ 4.3주 × 추정 주간 한도 사용률입니다. 예를 들어 Opus는 0.81%를 적용해 리뷰 10건당 약 $0.19로 표시했습니다. GPT-6.2-sol은 사용량 기록에 단가가 없어 OpenRouter 단가로 사용률을 추정했습니다.</p></article>
+        <article><h4>Codebuddy Business</h4><p>프로모션을 제외한 $40 ÷ 1,000크레딧으로 환산했습니다. 무료 모델은 무료로 표시했습니다. 크레딧·사용률은 원문에서 반올림된 값이므로, 표의 비용은 원문 환산액을 그대로 유지했습니다.</p></article>
+        <article><h4>OpenRouter 참고액</h4><p>시험 당시 할인 전 단가와 토큰 사용량을 적용한 종량제 참고값입니다. Claude는 실행 기록의 비용, DeepSeek·MiniMax는 모델 대표 단가를 사용했습니다. 구독 환산액·실제 청구액과 구분하며, 본문의 요금제 옵션과 연동하지 않습니다.</p></article>
+      </div></details>
+      <details><summary>시험 방법과 해석의 한계</summary><div class="details-body"><ul class="appendix-limit-list">
+        <li>문서·코드 리뷰 10건을 모델 10개로 두 차례 비교했습니다. 5건은 당시 입력, 5건은 커밋 기록으로 재구성했고 일부 보조 모델의 1회차 결과는 기존 실행에서 가져왔습니다.</li>
+        <li>동일한 변경 내용·파일을 제공하고 모든 모델의 저장소 조회를 막았습니다. Claude가 모델 이름을 가린 지적을 묶은 뒤 코드를 확인해 151건을 확정했으며, HIGH 이상은 6건입니다.</li>
+        <li>실제 저장소를 확인한 리뷰에서 별도의 치명적 문제 1건을 찾았지만, 시험의 모든 모델이 놓쳐 151건 집계에는 포함되지 않았습니다.</li>
+        <li>저장소 접근 제한과 Claude의 판정 기준이 결과에 영향을 줄 수 있습니다. 재구성 입력·작은 HIGH 표본의 한계를 고려해야 하며, 구독 한도는 다른 업무와 공유합니다.</li>
+      </ul></div></details>
+      <p class="source-note">제공 자료: 「AI 코드 리뷰 모델 비교」 · 2026.11.20 작성. 원본 HTML의 데이터와 평가 조건을 재구성했습니다.</p>
+    </section>
+    <footer class="page-footer"><strong>Codebuddy 보고서</strong><span>평가 기준일 <span data-report-date>2026.11.26</span> · 원문 기반 정적 보고서</span><a href="#overview">첫 화면으로 이동</a></footer>
+    <noscript><style>main>.section[hidden]{display:block!important}</style><div class="note note-amber">상세 수치와 차트에는 JavaScript가 필요합니다. 평가 자료를 내려받아 확인할 수 있습니다.</div></noscript>
+  </main>
+</body>
+</html>

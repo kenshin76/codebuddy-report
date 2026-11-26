@@ -1,0 +1,15 @@
+{
+  "templateVersion": "1.19.7",
+  "schemaVersion": 1,
+  "description": "부록 표의 열 간격과 정렬을 조정하고 탐지율 중심 표시·100% 막대·지표별 공동 순위를 적용.",
+  "frozenFiles": {
+    "index.html": "dc828737b2962012c21883638fbcdee7e63ee84da5b97631600711cc63a2253a",
+    "styles.css": "6761b4a2485ce827b664f57795aa2764848db258d3e66b0d842720d010436214",
+    "app.js": "365616212d77769c7d8292fa570d06542f087c3991408720047d353bd95eae87",
+    "sources/document.css": "b9d1c13ea38ba9eebc9f768c559f52942762e587a8871e548dc6dc9a65e4c707",
+    "scripts/render_sources.py": "51b27e865fe6d6c74eb2bc119e5684aaff491b93a01e1ed0a3954dd66d40c002",
+    "scripts/build_report.py": "a85db23d2006e56156a9918feb908ab5d5e66b074e49bbd3e418e698c06039a9",
+    "pricing.js": "6a5f900c101d508badc990af946b0f1b17e22fde4bea1c383d08b17ece2e0956",
+    "costs.js": "891bc81dd1b71dcf7363ec3a639d99d9da533b4deea423ede10abef39b1d1436"
+  }
+}

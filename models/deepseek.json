@@ -1,0 +1,198 @@
+{
+  "id": "deepseek",
+  "name": "DeepSeek V4.1 Flash",
+  "folder": "codebuddy_deepseek-v4.1-flash",
+  "group": "codebuddy",
+  "raw": 57.5,
+  "implementation": 60.0,
+  "apiPass": 45,
+  "coverage": 20.0,
+  "bugs": 15,
+  "docker": 14.5,
+  "confidence": "중간",
+  "scores": [
+    20.0,
+    8.0,
+    7.0,
+    14.5,
+    3.5,
+    3.0,
+    1.5
+  ],
+  "acceptance": [
+    1,
+    7,
+    32
+  ],
+  "static": [
+    11,
+    17,
+    3,
+    9,
+    0
+  ],
+  "severity": [
+    2,
+    10,
+    3
+  ],
+  "tokens": {
+    "dev": {
+      "input": 37206731,
+      "regular": 659659,
+      "read": 36547072,
+      "write": 0,
+      "output": 258733,
+      "reason": 0,
+      "total": 37465464
+    },
+    "review": {
+      "input": 38860610,
+      "regular": 610242,
+      "read": 38250368,
+      "write": 0,
+      "output": 100518,
+      "reason": 0,
+      "total": 38961128
+    },
+    "total": {
+      "input": 76067341,
+      "regular": 1269901,
+      "read": 74797440,
+      "write": 0,
+      "output": 359251,
+      "reason": 0,
+      "total": 76426592
+    }
+  },
+  "fullTokens": 76426592,
+  "tokenNote": "프록시 성공 1,079건을 모델·시간창으로 귀속. task ID로 다른 작업 혼입까지 배제하지 못함.",
+  "time": {
+    "dev": 8449000,
+    "review": 4060000,
+    "total": 12509000
+  },
+  "timeNote": "문서상 연속 관측창 3시간28분29초. 검토 시작은 개발 종료로 추론. mtime 공백을 사용자 대기로 채택하지 않음.",
+  "position": "권한·업무 정확성의 후속 검증 대상",
+  "strength": "근태·연차·대시보드 등 주요 업무의 기본 구현이 존재한다.",
+  "weakness": "타 직원 정보 조회와 대시보드 중단이 재현됐다. 예약 잔액·원자성 위험도 있다.",
+  "order": 40,
+  "pinLast": false,
+  "apiTotal": 112,
+  "groupLabel": "Codebuddy",
+  "presentation": {
+    "tokens": {
+      "label": "관측값",
+      "sourceLabel": "모델·시간창 귀속",
+      "partial": false,
+      "phaseNotes": {
+        "dev": "성공 565건의 모델·시간창 귀속. task ID 수준의 전용 귀속은 미확인.",
+        "review": "성공 514건의 모델·시간창 귀속. 같은 모델의 다른 작업 혼입 가능성은 배제하지 못함."
+      },
+      "missingNote": "usage 미수집",
+      "extras": []
+    },
+    "time": {
+      "label": "관측창",
+      "partial": false
+    }
+  },
+  "summary": {
+    "shortName": "DeepSeek",
+    "rosterNote": "권한·업무 정확성 재검증",
+    "apiNote": "공통 API 검사 결과이며 전체 업무 합격과 구분합니다.",
+    "recommendation": {
+      "label": "후속 검증",
+      "tone": "amber",
+      "action": "직원 정보 접근 권한·업무 정합성 재검증",
+      "detail": "권한·업무 정합성을 수정하고, 같은 요청 범위에서 토큰과 시간을 다시 측정해야 합니다.",
+      "order": 30
+    }
+  },
+  "efficiencyComparable": false,
+  "acceptanceResults": {
+    "A01": "C/—",
+    "A02": "C/PASS",
+    "A03": "C/—",
+    "A04": "D/FAIL",
+    "A05": "D/FAIL",
+    "A06": "C/—",
+    "A07": "D/FAIL",
+    "A08": "P/—",
+    "A09": "D/FAIL",
+    "A10": "P/—",
+    "A11": "P/—",
+    "A12": "P/—",
+    "A13": "C/—",
+    "A14": "P/—",
+    "A15": "P/—",
+    "A16": "P/—",
+    "A17": "P/—",
+    "A18": "M/—",
+    "A19": "P/—",
+    "A20": "P/—",
+    "A21": "P/—",
+    "A22": "C/—",
+    "A23": "P/—",
+    "A24": "P/—",
+    "A25": "D/FAIL",
+    "A26": "C/—",
+    "A27": "P/—",
+    "A28": "P/—",
+    "A29": "M/—",
+    "A30": "P/—",
+    "A31": "D/—",
+    "A32": "M/—",
+    "A33": "D/—",
+    "A34": "P/—",
+    "A35": "C/—",
+    "A36": "C/—",
+    "A37": "C/—",
+    "A38": "C/—",
+    "A39": "D/FAIL",
+    "A40": "D/FAIL"
+  },
+  "tokenRows": [
+    [
+      "DeepSeek V4.1 Flash",
+      "개발",
+      "37,206,731",
+      "659,659",
+      "36,547,072",
+      "0",
+      "258,733",
+      "0",
+      "37,465,464",
+      "upstream_hook 565건"
+    ],
+    [
+      "DeepSeek V4.1 Flash",
+      "검토",
+      "38,860,610",
+      "610,242",
+      "38,250,368",
+      "0",
+      "100,518",
+      "0",
+      "38,961,128",
+      "upstream_hook 514건"
+    ],
+    [
+      "DeepSeek V4.1 Flash",
+      "귀속창 합계",
+      "76,067,341",
+      "1,269,901",
+      "74,797,440",
+      "0",
+      "359,251",
+      "0",
+      "76,426,592",
+      "1,079건. 추론 0은 로그 필드값"
+    ]
+  ],
+  "evidence": [],
+  "provider": {
+    "name": "DeepSeek",
+    "icon": "assets/providers/deepseek.png"
+  }
+}

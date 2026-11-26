@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>토큰 가격 자료 | Codebuddy 보고서</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="document.css"></head>
+<body>
+<a class="skip-link" href="#document">본문으로 이동</a>
+<header class="document-topbar"><a class="document-brand" href="../index.html#method"><span aria-hidden="true">cb</span>Codebuddy 보고서</a><a class="back-link" href="../index.html#method">보고서로 돌아가기</a></header>
+<main id="document">
+<div class="document-heading"><span class="eyebrow">근거 자료 · 2026.11.26</span><h1>토큰 가격 자료</h1><p>GCPFDE-52 구독 환산액과 100만 토큰당 비용</p></div>
+<nav class="document-tabs" aria-label="근거 자료 선택"><a href="보고서_완성도.html">완성도 자료</a><a href="보고서_사용량.html">토큰·시간 자료</a><a href="보고서_요금제.html">Codebuddy 요금제 자료</a><a href="보고서_토큰가격.html" aria-current="page">토큰 가격 자료</a><a href="보고서_크레딧.html">HRMS 크레딧 자료</a></nav>
+<details class="document-contents"><summary>목차</summary><div class="toc">
+<ul>
+<li><a href="#_1">현재 웹보고서 적용 기준 — 사용자 지정 구독 지급량</a></li>
+<li><a href="#_2">과거 리뷰 시험 산정 기록</a></li>
+<li><a href="#_3">구독 환산액 계산</a></li>
+<li><a href="#100">100만 토큰당 비용</a></li>
+</ul>
+</div>
+</details>
+<article class="document-body"><h2 id="_1">현재 웹보고서 적용 기준 — 사용자 지정 구독 지급량</h2>
+<p>2026-11-26 사용자가 아래 구독요금·주당 토큰 지급량과 적용 단가를 지정했습니다. 웹보고서의 현재 GPT·Opus 비용은 아래 <strong>지정 단가</strong>를 사용합니다. 뒤에 보존된 리뷰 시험 단가는 과거 산정 근거이며 현재 계산에 중복 적용하지 않습니다.</p>
+<div class="document-table" tabindex="0" role="region" aria-label="자료 표, 가로 스크롤"><table>
+<thead>
+<tr>
+<th scope="col">모델</th>
+<th scope="col">사용자 제시 산정식</th>
+<th scope="col">현재 적용 단가 / 1M</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opus 5.5</td>
+<td>구독요금[$100] ÷ (주당 토큰지급량[109M] × 지급횟수[4.3주]) ≈ 1M당 약 $0.214</td>
+<td>$0.214</td>
+</tr>
+<tr>
+<td>GPT-6.1-sol</td>
+<td>구독요금[$100] ÷ (주당 토큰지급량[74M] × 지급횟수[4.3주]) ≈ 1M당 약 $0.3145</td>
+<td>$0.3145</td>
+</tr>
+</tbody>
+</table></div>
+<p>주당 표시량을 직접 계산하면 Opus 월468.7M·1M당 약$0.213356, GPT 월318.2M·1M당 약$0.314268입니다. 현재 웹 비용에는 표시식의 재계산값 대신 사용자가 지정한 $0.214·$0.3145를 사용합니다. 공급사의 공식 지급량·실청구를 새로 검증한 자료는 아닙니다.</p>
+<h2 id="_2">과거 리뷰 시험 산정 기록</h2>
+<p><a href="https://com2us.atlassian.net/browse/GCPFDE-52" target="_blank" rel="noopener noreferrer">GCPFDE-52</a>에서 모델별로 리뷰 10건을 두 차례 실행했다. 비용과 토큰은 두 회차의 평균을 내어 리뷰 10건을 한 번 실행한 기준으로 표시했다. <code>gpt-6.1-sol</code>과 CodeBuddy <code>fast-model</code>·<code>balanced-model</code>은 2026-11-25에 같은 입력으로 추가 시험했다.</p>
+<h2 id="_3">구독 환산액 계산</h2>
+<div class="document-table" tabindex="0" role="region" aria-label="자료 표, 가로 스크롤"><table>
+<thead>
+<tr>
+<th scope="col">구독</th>
+<th scope="col">계산식</th>
+<th scope="col">예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude·ChatGPT Team Premium</td>
+<td><code>좌석 월 $100 ÷ 4.3주 × 추정 주간 한도 사용률</code></td>
+<td>Claude Opus는 주간 한도 0.81%를 써서 약 $0.19</td>
+</tr>
+<tr>
+<td>CodeBuddy Business</td>
+<td><code>사용 credit × $0.04</code> (프로모션 제외, 1,000 credit당 $40)</td>
+<td>DeepSeek Flash는 약 52 credit을 써서 $2.07. 표시한 credit은 반올림한 값</td>
+</tr>
+<tr>
+<td><code>hy4flash-free</code></td>
+<td>무료 경로 사용</td>
+<td>$0.00</td>
+</tr>
+</tbody>
+</table></div>
+<p>주간 한도 사용률은 실행에 해당하는 <code>token-ledger</code> 원장 가중치를 주간 한도 1%에 해당하는 가중치로 나눠 추정했다. 반영 계획에 기록된 1%당 가중치는 Claude $8.49, ChatGPT는 직전 주 기준 $1.65다. 이 사용률로 좌석 구독료 중 해당 리뷰에 쓴 몫을 계산했다. <span class="local-reference" title="2026-11-20-model-comparison-plan.md">결과 반영 계획</span></p>
+<p><code>gpt-6.2-sol</code>은 시험 당시 OpenRouter 단가를 적용했다. 보고서의 OpenRouter 추정액 $1.45는 원장에서 이미 빠진 캐시 읽기 토큰을 일반 입력에서 한 번 더 빼면서 생긴 값이다. 시험 세션 20개의 원장 기록으로 다시 계산하면 리뷰 10건당 $1.689936이다. 이 금액에 보정값을 적용하면 주간 한도 1.02%, 구독 환산액 $0.24가 재현된다. <code>gpt-6.1-terra</code>의 OpenRouter 추정액 $0.52도 같은 이유로 낮게 나온 값이며, 원장 기록으로 다시 계산하면 리뷰 10건당 $0.67이다. 아래 표에는 다시 계산한 OpenRouter 추정액을 반영했다.</p>
+<h2 id="100">100만 토큰당 비용</h2>
+<p><code>리뷰 10건 비용 ÷ 같은 리뷰 10건의 (캐시 읽기를 뺀 입력 + 출력) 토큰 × 1,000,000</code></p>
+<p>예를 들어 <code>deepseek-v4.1-flash</code>는 리뷰 10건에서 입력 68만(캐시 읽기 약 3만 포함), 출력 26만 토큰을 썼다. 구독 환산액 $2.07을 캐시 읽기를 뺀 90.9만 토큰으로 나누면 100만 토큰당 약 $2.28이다.</p>
+<div class="document-table" tabindex="0" role="region" aria-label="자료 표, 가로 스크롤"><table>
+<thead>
+<tr>
+<th scope="col">모델</th>
+<th scope="col">캐시 읽기를 뺀 입력 + 출력 (리뷰 10건)</th>
+<th scope="col">구독 환산액 (리뷰 10건)</th>
+<th scope="col">구독 환산액 / 100만 토큰</th>
+<th scope="col">OpenRouter 추정액 / 100만 토큰</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>claude-opus-5-5</code></td>
+<td>87.9만</td>
+<td>$0.188</td>
+<td>$0.21</td>
+<td>$10.26</td>
+</tr>
+<tr>
+<td><code>claude-sonnet-5-5</code></td>
+<td>88.4만</td>
+<td>$0.095</td>
+<td>$0.11</td>
+<td>$5.16</td>
+</tr>
+<tr>
+<td><code>gpt-6.2-sol</code></td>
+<td>71만</td>
+<td>$0.238</td>
+<td>$0.34</td>
+<td>$2.38</td>
+</tr>
+<tr>
+<td><code>gpt-6.1-sol</code> (11-25 추가 시험)</td>
+<td>68.4만</td>
+<td>$0.215</td>
+<td><strong>$0.31</strong></td>
+<td>$2.23</td>
+</tr>
+<tr>
+<td><code>gpt-6.1-terra</code></td>
+<td>63.6만</td>
+<td>$0.095</td>
+<td>$0.15</td>
+<td>$1.06</td>
+</tr>
+<tr>
+<td><code>deepseek-v4.1-flash</code></td>
+<td>90.9만</td>
+<td>$2.07</td>
+<td>$2.28</td>
+<td>$0.55</td>
+</tr>
+<tr>
+<td><code>minimax-m3.1-flash</code></td>
+<td>72.4만</td>
+<td>$0.64</td>
+<td>$0.88</td>
+<td>$0.21</td>
+</tr>
+<tr>
+<td><code>hy4flash-free</code></td>
+<td>87만</td>
+<td>$0.00</td>
+<td>$0.00</td>
+<td>$0.11</td>
+</tr>
+<tr>
+<td><code>fast-model</code> (11-25 추가 시험)</td>
+<td>71.7만</td>
+<td>$0.665</td>
+<td>$0.93</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>balanced-model</code> (11-25 추가 시험)</td>
+<td>78.4만</td>
+<td>$3.76</td>
+<td>$4.80</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>hy4-preview</code></td>
+<td>118.1만</td>
+<td>$5.37</td>
+<td>$4.55</td>
+<td>$1.52</td>
+</tr>
+<tr>
+<td><code>kimi-k3.1-pro</code></td>
+<td>76.6만</td>
+<td>$8.19</td>
+<td>$10.69</td>
+<td>$3.07</td>
+</tr>
+</tbody>
+</table></div>
+<p>11-20 시험 모델의 값은 리뷰 10건 금액을 캐시 읽기를 뺀 토큰으로 나눈 근삿값이다. 금액은 CodeBuddy 행이 보고서에 표시된 구독 환산액과 OpenRouter 추정액, Claude 행이 보고서의 주간 한도 사용률(0.81%·0.41%)로 다시 계산한 구독 환산액과 실행 기록의 비용이다. 이 사용률은 소수 둘째 자리까지라 Claude 행 구독 환산액의 셋째 자리는 근삿값이다. 보고서 토큰 표의 입력은 Claude·CodeBuddy 모델에서 캐시 읽기를 포함하므로, 보관한 실행 기록의 캐시 읽기(Claude <code>cache_read_input_tokens</code>, CodeBuddy <code>cached_tokens</code>)를 빼고 다시 셌다. <code>deepseek-v4.1-flash</code>·<code>minimax-m3.1-flash</code>·<code>hy4flash-free</code>는 1회차 A~E 실행 기록이 남아 있지 않아, 남은 15회의 캐시 읽기 비율로 추정했다. ChatGPT 모델은 원장의 일반 입력이 이미 캐시 읽기를 뺀 값이고, 구독 환산액과 OpenRouter 값 모두 원장 기록으로 다시 계산했다. <code>fast-model</code>·<code>balanced-model</code> 행은 11-25 실행 기록 20회씩으로 계산했고, 실제 답하는 모델이 공개되지 않아 OpenRouter 추정액은 비워 두었다. Jira 하단의 <code>token-ledger</code> 사용량은 일감 전체 집계다. 100만 토큰당 비용은 입력·출력 비율과 캐시 사용량에 따라 달라진다. <span class="local-reference" title="2026-11-20-model-comparison-report.md#비용과-토큰-사용량">보고서 비용·토큰 표</span></p>
+<h3 id="gpt-61-sol-gpt-62-sol"><code>gpt-6.1-sol</code> 추가 시험과 <code>gpt-6.2-sol</code> 시험 비교</h3>
+<p>같은 입력에서 <code>gpt-6.1-sol</code>은 100만 토큰당 $0.31로, <code>gpt-6.2-sol</code> 시험의 $0.34보다 약 6% 낮았다. 두 모델의 단가가 같아서 차이는 토큰 구성에서만 나온다. 100만 토큰당 금액은 모델끼리 비용을 비교하는 값이 아니다. 비용은 리뷰 1건당 금액으로 비교하며, 리뷰 10건 구독 환산액은 <code>gpt-6.1-sol</code> $0.215, <code>gpt-6.2-sol</code> $0.238로 <code>gpt-6.2-sol</code>이 약 11% 더 든다. 입력은 거의 같고 출력이 75% 많았다. 이번 시험은 지적 내용의 블라인드 판정 없이 비용만 계산했다.</p>
+<p>시험 조건</p>
+<ul>
+<li>입력: 보관 폴더 <code>replay/</code>의 A~J 프롬프트 10건. SHA-256이 기존 <code>gpt-6.2-sol</code> 실행 메타데이터 20건의 <code>prompt_sha256</code>과 모두 일치함.</li>
+<li>실행: Claude에서 <code>review-run</code> 래퍼로 Codex CLI 호출(codex-cli 0.169.0, 기존 시험과 같은 버전). 임시 <code>REVIEW_MODELS</code>로 <code>gpt-6.1-sol</code> high 지정. 리뷰 10건씩 2회, 실행마다 새 빈 작업 폴더 사용.</li>
+<li>도구 미사용: 20회 모두 Codex 로그에 명령 실행·MCP 호출이 없고, 끝난 뒤 작업 폴더도 비어 있음. 20회 모두 <code>status: ok</code>.</li>
+<li>원장: <code>token-ledger sync</code> 뒤 세션 20개, 요청 20개. 실행 메타의 토큰 수와 원장의 일반 입력 + 출력이 20회 모두 일치함.</li>
+<li>산출물: <code>~/.claude/review-trial-archive/2026-11-20-model-compare/sol61/</code> (계산 스크립트 <code>cost.py</code> 포함).</li>
+</ul>
+<div class="document-table" tabindex="0" role="region" aria-label="자료 표, 가로 스크롤"><table>
+<thead>
+<tr>
+<th scope="col">항목</th>
+<th scope="col"><code>gpt-6.2-sol</code> (11-20 시험)</th>
+<th scope="col"><code>gpt-6.1-sol</code> (11-25 시험)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>실행 수</td>
+<td>20회 (10건 × 2회)</td>
+<td>20회 (10건 × 2회)</td>
+</tr>
+<tr>
+<td>일반 입력 (캐시 읽기 제외, 20회 합계)</td>
+<td>1,356,734</td>
+<td>1,332,012</td>
+</tr>
+<tr>
+<td>출력 (20회 합계)</td>
+<td>64,202</td>
+<td>36,657</td>
+</tr>
+<tr>
+<td>캐시 읽기 (20회 합계)</td>
+<td>243,840</td>
+<td>238,208</td>
+</tr>
+<tr>
+<td>원장 가중치 (20회 합계)</td>
+<td>$3.379872</td>
+<td>$3.054415</td>
+</tr>
+<tr>
+<td>원장 가중치 (리뷰 10건)</td>
+<td>$1.6899</td>
+<td>$1.5272</td>
+</tr>
+<tr>
+<td>주간 한도 사용률 (리뷰 10건)</td>
+<td>1.02%</td>
+<td>0.93%</td>
+</tr>
+<tr>
+<td>구독 환산액 (리뷰 10건)</td>
+<td>$0.238</td>
+<td>$0.215</td>
+</tr>
+<tr>
+<td>입력 + 출력 (리뷰 10건)</td>
+<td>710,468</td>
+<td>684,335</td>
+</tr>
+<tr>
+<td><strong>구독 환산액 / 100만 토큰</strong></td>
+<td><strong>$0.34</strong> ($0.3353)</td>
+<td><strong>$0.31</strong> ($0.3145)</td>
+</tr>
+<tr>
+<td>회차별 / 100만 토큰 (1회차 / 2회차)</td>
+<td>$0.334 / $0.337</td>
+<td>$0.311 / $0.318</td>
+</tr>
+<tr>
+<td>OpenRouter 추정액 (리뷰 10건)</td>
+<td>$1.69</td>
+<td>$1.53</td>
+</tr>
+<tr>
+<td>OpenRouter 추정액 / 100만 토큰</td>
+<td>$2.38</td>
+<td>$2.23</td>
+</tr>
+<tr>
+<td>입력 + 출력 중 출력 비중</td>
+<td>4.5%</td>
+<td>2.7%</td>
+</tr>
+<tr>
+<td>평균 시간 (리뷰 1건)</td>
+<td>75초</td>
+<td>48초</td>
+</tr>
+</tbody>
+</table></div>
+<p>계산식</p>
+<ol>
+<li>원장 가중치 = (일반 입력 × $2 + 출력 × $10 + 캐시 읽기 × $0.10) ÷ 1,000,000. 원장의 일반 입력은 이미 캐시 읽기를 뺀 값이라 그대로 씀. 이 값은 원장에 기록된 가중치와 같음.</li>
+<li>주간 한도 사용률(%) = 리뷰 10건 가중치 ÷ 1%당 가중치 $1.65</li>
+<li>구독 환산액 = 좌석 월 $100 ÷ 4.3주 × 주간 한도 사용률</li>
+<li>100만 토큰당 환산액 = 구독 환산액 ÷ (일반 입력 + 출력) × 1,000,000. 분모에 캐시 읽기는 넣지 않음.</li>
+</ol>
+<p>예: <code>gpt-6.1-sol</code>은 $1.52721 ÷ $1.65 = 0.92558%, $23.2558 × 0.92558% = $0.21525, $0.21525 ÷ 684,334.5 × 1,000,000 = $0.3145.</p>
+<p>리뷰 10건 가중치는 20회 합계를 2로 나눈 값이다.</p>
+<p>OpenRouter 추정액은 <code>GET /api/v1/models/openai/gpt-6.1-sol/endpoints</code>의 OpenAI 기본 공급 행(<code>service_tier</code> 없음, <code>discount</code> 0) 단가로 계산했다. 일반 입력 $2, 출력 $10, 캐시 읽기 $0.10으로 원장 가중치 단가와 같고, 11-20에 보관한 모델 목록의 <code>gpt-6.1-sol</code> 단가와도 같다. 요청당 입력은 최대 165,789토큰이라 272,000토큰 이상에 붙는 할증 단가는 적용되지 않는다. 그래서 OpenRouter 추정액은 원장 가중치와 같고, 100만 토큰당 값은 <code>$1.5272 ÷ 684,335 × 1,000,000 = $2.23</code>이다. flex·priority 공급 행은 쓰지 않았다.</p>
+<h3 id="codebuddy-fast-modelbalanced-model">CodeBuddy <code>fast-model</code>·<code>balanced-model</code> 추가 시험</h3>
+<p><code>fast-model</code>은 리뷰 10건에 16.6 credit($0.665), <code>balanced-model</code>은 94.1 credit($3.76)을 썼다. 100만 토큰당으로는 $0.93과 $4.80이다. <code>fast-model</code>은 <code>minimax-m3.1-flash</code>(16 credit)와 비용이 비슷하고, <code>balanced-model</code>은 <code>deepseek-v4.1-flash</code>(52 credit)의 약 1.8배다. 앱에 표시된 credit 배율은 Fast x0.34, Balanced x0.59로 1.7배 차이지만, 실제 사용량은 5.7배 차이였다. 이번 시험은 지적 내용의 블라인드 판정 없이 비용만 계산했다.</p>
+<p>두 모델은 CodeBuddy가 정한 별칭이라 실제로 답하는 모델을 알 수 없다. 응답 기록의 모델 이름도 <code>fast-model</code>·<code>balanced-model</code>로만 남는다. 같은 프롬프트의 입력 토큰 수도 두 모델에서 달랐지만(A 기준 24,451과 26,776), 앱이 모델마다 다른 시스템 프롬프트를 붙였을 수도 있어 실제 모델이 다른지는 확인하지 못했다. 별칭이 가리키는 모델은 CodeBuddy가 바꿀 수 있으므로, 이 결과는 2026-11-25 시점 값이다.</p>
+<p>시험 조건</p>
+<ul>
+<li>입력: <code>gpt-6.1-sol</code> 추가 시험과 같은 <code>replay/</code>의 A~J 프롬프트 10건.</li>
+<li>실행: 11-20 CodeBuddy 시험과 같은 인자로 <code>codebuddy -p --model &lt;ID&gt;</code> 호출. 도구·MCP·설정 파일 끔, <code>--output-format json</code>. 리뷰 10건씩 2회, 실행마다 새 빈 작업 폴더 사용. 두 모델은 동시에 돌림.</li>
+<li>결과: 40회 모두 종료 코드 0, 결과 문서 있음. 도구 호출 없음, 끝난 뒤 작업 폴더도 비어 있음.</li>
+<li>credit·토큰: 요청별 <code>providerData.rawUsage</code>의 <code>credit</code>, <code>prompt_tokens</code>, <code>completion_tokens</code>, 캐시 읽기 <code>prompt_tokens_details.cached_tokens</code>를 더함. <code>prompt_tokens</code>는 캐시 읽기를 포함하므로 뺌.</li>
+<li>산출물: <code>~/.claude/review-trial-archive/2026-11-20-model-compare/alias/</code> (실행 스크립트 <code>cb.py</code>, 집계 스크립트 <code>agg.py</code> 포함). <code>cb.py</code>는 결과를 이 폴더에 덮어쓰고 입력은 상위 폴더의 <code>replay/</code>에서 읽으므로, 다시 돌릴 때는 <code>2026-11-20-model-compare/</code> 폴더 전체를 복사해 그 안의 <code>alias/cb.py</code>를 돌린다.</li>
+</ul>
+<div class="document-table" tabindex="0" role="region" aria-label="자료 표, 가로 스크롤"><table>
+<thead>
+<tr>
+<th scope="col">항목</th>
+<th scope="col"><code>fast-model</code></th>
+<th scope="col"><code>balanced-model</code></th>
+<th scope="col"><code>minimax-m3.1-flash</code> (11-20)</th>
+<th scope="col"><code>deepseek-v4.1-flash</code> (11-20)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>앱 표시 credit 배율</td>
+<td>x0.34</td>
+<td>x0.59</td>
+<td>x0.08</td>
+<td>x0.00</td>
+</tr>
+<tr>
+<td>credit (리뷰 10건)</td>
+<td>16.6</td>
+<td>94.1</td>
+<td>16</td>
+<td>52</td>
+</tr>
+<tr>
+<td>구독 환산액 (리뷰 10건)</td>
+<td>$0.665</td>
+<td>$3.76</td>
+<td>$0.64</td>
+<td>$2.07</td>
+</tr>
+<tr>
+<td>회차별 credit (1회차 / 2회차)</td>
+<td>16.1 / 17.1</td>
+<td>89.0 / 99.2</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>입력 (캐시 읽기 포함, 리뷰 10건)</td>
+<td>625,382</td>
+<td>678,437</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>캐시 읽기 (리뷰 10건)</td>
+<td>15,356</td>
+<td>31,616</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>출력 (리뷰 10건)</td>
+<td>107,330</td>
+<td>136,754</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>캐시 읽기를 뺀 입력 + 출력 (리뷰 10건)</td>
+<td>717,356</td>
+<td>783,574</td>
+<td>72.4만</td>
+<td>90.9만</td>
+</tr>
+<tr>
+<td><strong>구독 환산액 / 100만 토큰</strong></td>
+<td><strong>$0.93</strong></td>
+<td><strong>$4.80</strong></td>
+<td>$0.88</td>
+<td>$2.28</td>
+</tr>
+<tr>
+<td>회차별 / 100만 토큰 (1회차 / 2회차)</td>
+<td>$0.91 / $0.95</td>
+<td>$4.63 / $4.97</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>평균 시간 (리뷰 1건)</td>
+<td>1분 31초</td>
+<td>3분 7초</td>
+<td>1분 54초</td>
+<td>2분 24초</td>
+</tr>
+<tr>
+<td>실행 1회 최대 credit (20회 중)</td>
+<td>3.44 (H)</td>
+<td>20.70 (F)</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p>계산식</p>
+<ol>
+<li>리뷰 10건 credit = 20회 credit 합계 ÷ 2</li>
+<li>구독 환산액 = 리뷰 10건 credit × $0.04</li>
+<li>100만 토큰당 환산액 = 구독 환산액 ÷ (입력 − 캐시 읽기 + 출력) × 1,000,000</li>
+</ol>
+<p>예: <code>fast-model</code>은 33.27 ÷ 2 = 16.635 credit, 16.635 × $0.04 = $0.6654, $0.6654 ÷ 717,356 × 1,000,000 = $0.93.</p>
+<p>리뷰 10건 토큰 값은 20회 합계를 2로 나눠 정수로 반올림했다. 그래서 <code>balanced-model</code>은 표의 입력 − 캐시 읽기 + 출력을 더하면 783,575이고, 반올림 전 값은 783,574.5다.</p>
+<p><code>minimax-m3.1-flash</code>·<code>deepseek-v4.1-flash</code> 열은 위 100만 토큰당 비용 표와 보고서의 <span class="local-reference" title="2026-11-20-model-comparison-report.md#비용과-토큰-사용량">비용 표</span>·<span class="local-reference" title="2026-11-20-model-comparison-report.md#리뷰-시간">시간 표</span> 값이다. 앱 표시 credit 배율은 CodeBuddy가 로컬에 저장한 모델 목록의 값이고 실제 사용량과 다르다. <code>deepseek-v4.1-flash</code>는 x0.00으로 표시되지만 52 credit을 썼다. 평균 시간은 두 모델을 동시에 돌린 값이라 11-20 시험과 실행 환경이 같지 않다.</p></article>
+<footer><a href="../index.html#method">Codebuddy 보고서로 돌아가기</a></footer>
+</main>
+</body></html>

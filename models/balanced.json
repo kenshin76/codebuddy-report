@@ -1,0 +1,181 @@
+{
+  "id": "balanced",
+  "name": "Balanced",
+  "folder": "codebuddy_balanced",
+  "group": "codebuddy",
+  "raw": 39.5,
+  "implementation": 40,
+  "apiPass": 42,
+  "coverage": 20,
+  "bugs": 20,
+  "docker": 6,
+  "confidence": "중간",
+  "scores": [
+    14,
+    6.5,
+    6.5,
+    6,
+    3,
+    2.5,
+    1
+  ],
+  "acceptance": [
+    2,
+    6,
+    32
+  ],
+  "static": [
+    4,
+    18,
+    12,
+    6,
+    0
+  ],
+  "severity": [
+    5,
+    13,
+    2
+  ],
+  "tokens": {
+    "dev": {
+      "input": 32245773,
+      "regular": 286221,
+      "read": 31959552,
+      "write": 0,
+      "output": 80576,
+      "reason": 0,
+      "total": 32326349
+    },
+    "review": {
+      "input": 14744219,
+      "regular": 95643,
+      "read": 14648576,
+      "write": 0,
+      "output": 39755,
+      "reason": 0,
+      "total": 14783974
+    },
+    "total": {
+      "input": 46989992,
+      "regular": 381864,
+      "read": 46608128,
+      "write": 0,
+      "output": 120331,
+      "reason": 0,
+      "total": 47110323
+    }
+  },
+  "fullTokens": null,
+  "tokenNote": "새 실행의 개발·검토 UI 전사 소계 47,110,323토큰. 산술은 일치하지만 원본 화면·전체 호출 포괄은 미대조이며 프로젝트 전체는 null. 이전 실행과 합산하지 않음.",
+  "time": {
+    "dev": 3180000,
+    "review": 1515000,
+    "total": 4695000
+  },
+  "timeNote": "새 실행의 기록상 Elapsed: 개발53분·검토25분15초, 합1시간18분15초. 원문의52분60초는53분으로 정규화. 기록상15:54:09~17:12:24와 산술 일치하나 절대 시각·실제 전체·AI 활성·입력 대기는 독립 미확인. 이전 실행과 합산하지 않음.",
+  "position": "핵심 업무 재구현·권한 보완",
+  "strength": "로그인·계층 분리·localhost 배포는 확인했다. 새 개발·검토 토큰과 시간이 기록됐다.",
+  "weakness": "타 직원 상세 노출과 프로필·잔액 API 오류, 로그인 뒤 업무 UI 누락이 있다. 최신 권한·업무 불변식과 재현 가능한 빌드도 보완해야 한다.",
+  "order": 30,
+  "pinLast": true,
+  "apiTotal": 112,
+  "groupLabel": "Codebuddy",
+  "presentation": {
+    "tokens": {
+      "label": "기록 소계",
+      "sourceLabel": "개발자 UI 전사 소계 · 전체 포괄 미확인",
+      "partial": true,
+      "phaseNotes": {
+        "dev": "새 실행의 개발 UI 전사 32,326,349토큰. 원본 화면·호출별 전체 포괄은 이번에 직접 대조하지 못함.",
+        "review": "새 코드 검토·개선 UI 전사 14,783,974토큰. 이전 실행의 시간 분리 문서 응답과 별개."
+      },
+      "missingNote": "관측 자료 없음",
+      "extras": [
+        "산술 확인 범위의 합계이며 프로젝트 전체 토큰·실제 모델 ID는 null. 이전 개발·문서 응답 사용량과 합산하지 않음."
+      ]
+    },
+    "time": {
+      "label": "기록상 Elapsed",
+      "partial": true
+    }
+  },
+  "summary": {
+    "shortName": "Balanced",
+    "rosterNote": "Balanced 선택 모드 · 업무 UI·권한 보완",
+    "apiNote": "공통 API 검사 결과이며 전체 업무 합격과 구분합니다.",
+    "recommendation": {
+      "label": "재구현 검토",
+      "tone": "neutral",
+      "action": "직원 범위 차단·핵심 화면 구현",
+      "detail": "타 직원 상세 노출을 우선 차단하고 프로필·잔액·휴가 API와 실제 업무 화면을 구현한 뒤 회귀 검증해야 합니다. 새 사용량은 전사 소계이며 전체 소비가 아닙니다.",
+      "order": 40
+    }
+  },
+  "efficiencyComparable": false,
+  "acceptanceResults": {
+    "A01": "P/—",
+    "A02": "C/PASS",
+    "A03": "P/—",
+    "A04": "D/FAIL",
+    "A05": "C/PASS",
+    "A06": "C/—",
+    "A07": "D/FAIL",
+    "A08": "P/—",
+    "A09": "D/FAIL",
+    "A10": "M/—",
+    "A11": "M/—",
+    "A12": "P/—",
+    "A13": "P/—",
+    "A14": "P/—",
+    "A15": "P/—",
+    "A16": "P/—",
+    "A17": "P/—",
+    "A18": "M/—",
+    "A19": "P/—",
+    "A20": "M/—",
+    "A21": "P/—",
+    "A22": "M/—",
+    "A23": "P/—",
+    "A24": "C/—",
+    "A25": "D/FAIL",
+    "A26": "P/—",
+    "A27": "M/—",
+    "A28": "M/—",
+    "A29": "M/—",
+    "A30": "M/—",
+    "A31": "M/—",
+    "A32": "M/—",
+    "A33": "P/—",
+    "A34": "P/—",
+    "A35": "P/—",
+    "A36": "P/—",
+    "A37": "M/—",
+    "A38": "P/—",
+    "A39": "D/FAIL",
+    "A40": "D/FAIL"
+  },
+  "tokenRows": null,
+  "evidence": [
+    {
+      "title": "완성도 평가",
+      "url": "sources/보고서_완성도.html"
+    },
+    {
+      "title": "토큰·시간 근거",
+      "url": "sources/보고서_사용량.html"
+    }
+  ],
+  "apiExecuted": 111,
+  "apiNotRun": 1,
+  "limitations": [
+    [
+      "Balanced 새 실행",
+      "UI 전사 두 구간 47,110,323토큰·78분15초",
+      "산술 확인. 원본 화면·실제 모델·전체 호출 포괄은 미확인. 이전 실행과 합산하지 않음."
+    ]
+  ],
+  "provider": {
+    "name": "Tencent · Balanced 자동 모드",
+    "icon": "assets/providers/tencent-mark.svg"
+  }
+}

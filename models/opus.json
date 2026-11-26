@@ -1,0 +1,193 @@
+{
+  "id": "opus",
+  "name": "Opus 5.5",
+  "folder": "claude_opus-5.5",
+  "group": "baseline",
+  "raw": 98.0,
+  "implementation": 98.75,
+  "apiPass": 110,
+  "coverage": 10.0,
+  "bugs": 1,
+  "docker": 15.0,
+  "confidence": "중상",
+  "scores": [
+    29.5,
+    19.0,
+    15.0,
+    15.0,
+    10.0,
+    5.0,
+    4.5
+  ],
+  "acceptance": [
+    3,
+    1,
+    36
+  ],
+  "static": [
+    39,
+    0,
+    0,
+    1,
+    0
+  ],
+  "severity": [
+    0,
+    0,
+    1
+  ],
+  "tokens": {
+    "dev": {
+      "input": 58525678,
+      "regular": 280,
+      "read": 57954474,
+      "write": 570924,
+      "output": 347611,
+      "reason": 54155,
+      "total": 58873289
+    },
+    "review": {
+      "input": 19135796,
+      "regular": 58,
+      "read": 19072731,
+      "write": 63007,
+      "output": 52646,
+      "reason": 13095,
+      "total": 19188442
+    },
+    "total": {
+      "input": 77661474,
+      "regular": 338,
+      "read": 77027205,
+      "write": 633931,
+      "output": 400257,
+      "reason": 67250,
+      "total": 78061731
+    }
+  },
+  "fullTokens": 78061731,
+  "tokenNote": "요청별 추출 JSON의 164개 호출. 원본 transcript 전체를 다시 검증한 수치는 아님.",
+  "time": {
+    "dev": 3182605,
+    "review": 615224,
+    "total": 3797829
+  },
+  "timeNote": "요청 수신~마지막 assistant 기록. 전체 창 1시간37분1.974초, 요청 사이33분44.145초. A/W 분리는 개발자 재구성 기준.",
+  "position": "구조와 유지보수성의 강점",
+  "strength": "기능별 서비스·DTO·권한 재조회가 명확하다.",
+  "weakness": "로그아웃 본문 계약 1개 결함군. 기준 모델과 1점 차이는 정성 평가에 민감하다.",
+  "order": 20,
+  "pinLast": false,
+  "apiTotal": 112,
+  "groupLabel": "기준 모델",
+  "presentation": {
+    "tokens": {
+      "label": "관측값",
+      "sourceLabel": "두 완료 요청 합계",
+      "partial": false,
+      "phaseNotes": {
+        "dev": "개발 136개 호출의 추출 JSON. 원본 transcript 전체를 이번에 재검증한 값은 아님.",
+        "review": "검토 28개 호출의 추출 JSON. 원본 transcript 재검증 범위는 동일하게 제한됨."
+      },
+      "missingNote": "usage 미수집",
+      "extras": []
+    },
+    "time": {
+      "label": "요청 경과",
+      "partial": false
+    }
+  },
+  "summary": {
+    "shortName": "Opus 5.5",
+    "rosterNote": "구조와 유지보수성의 강점",
+    "apiNote": "공통 API 검사 결과이며 전체 업무 합격과 구분합니다.",
+    "recommendation": null
+  },
+  "efficiencyComparable": true,
+  "acceptanceResults": {
+    "A01": "C/—",
+    "A02": "C/PASS",
+    "A03": "C/—",
+    "A04": "C/—",
+    "A05": "C/PASS",
+    "A06": "C/—",
+    "A07": "C/PASS",
+    "A08": "C/—",
+    "A09": "C/—",
+    "A10": "C/—",
+    "A11": "C/—",
+    "A12": "C/—",
+    "A13": "C/—",
+    "A14": "C/—",
+    "A15": "C/—",
+    "A16": "C/—",
+    "A17": "C/—",
+    "A18": "C/—",
+    "A19": "C/—",
+    "A20": "C/—",
+    "A21": "C/—",
+    "A22": "C/—",
+    "A23": "C/—",
+    "A24": "C/—",
+    "A25": "C/—",
+    "A26": "C/—",
+    "A27": "C/—",
+    "A28": "C/—",
+    "A29": "C/—",
+    "A30": "C/—",
+    "A31": "C/—",
+    "A32": "C/—",
+    "A33": "C/—",
+    "A34": "C/—",
+    "A35": "C/—",
+    "A36": "C/—",
+    "A37": "C/—",
+    "A38": "C/—",
+    "A39": "D/FAIL",
+    "A40": "C/—"
+  },
+  "tokenRows": [
+    [
+      "Opus 5.5",
+      "개발",
+      "58,525,678",
+      "280",
+      "57,954,474",
+      "570,924",
+      "347,611",
+      "54,155",
+      "58,873,289",
+      "136개 호출; 쓰기 1h TTL"
+    ],
+    [
+      "Opus 5.5",
+      "검토",
+      "19,135,796",
+      "58",
+      "19,072,731",
+      "63,007",
+      "52,646",
+      "13,095",
+      "19,188,442",
+      "28개 호출; 쓰기 1h TTL"
+    ],
+    [
+      "Opus 5.5",
+      "합계",
+      "77,661,474",
+      "338",
+      "77,027,205",
+      "633,931",
+      "400,257",
+      "67,250",
+      "78,061,731",
+      "5분 쓰기는 기록상 0"
+    ]
+  ],
+  "evidence": [],
+  "efficiencyNote": "동일한 두 완료 요청 범위의 참고 지표",
+  "provider": {
+    "name": "Anthropic",
+    "icon": "assets/providers/anthropic-mark.svg"
+  }
+}

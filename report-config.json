@@ -1,0 +1,498 @@
+{
+  "schemaVersion": 1,
+  "templateVersion": "1.19.7",
+  "date": "2026-11-26",
+  "benchmark": {
+    "apiTotal": 112,
+    "acceptanceTotal": 40,
+    "dockerMax": 15
+  },
+  "report": {
+    "defaultModelId": "kimi",
+    "primaryReferenceId": "gpt",
+    "assessmentUpdated": "2026-11-25",
+    "preservedAssessmentDate": "2026-11-24"
+  },
+  "groups": {
+    "baseline": "기준 모델",
+    "codebuddy": "Codebuddy",
+    "other": "기타 모델"
+  },
+  "areas": [
+    [
+      "요구사항 구현",
+      30.0
+    ],
+    [
+      "업무 정확성",
+      20.0
+    ],
+    [
+      "인증·권한·보안",
+      15.0
+    ],
+    [
+      "Docker·인프라",
+      15.0
+    ],
+    [
+      "UI·UX",
+      10.0
+    ],
+    [
+      "코드 유지보수성",
+      5.0
+    ],
+    [
+      "시험·문서·재현",
+      5.0
+    ]
+  ],
+  "sources": {
+    "보고서_완성도.md": {
+      "sha256": "a701116ec8dfc2c3469ad7473a62ceb43ed6d248dd1fdf6662de11f517679839",
+      "bytes": 76826,
+      "bundledSha256": "3e7be81075ae54bcc36717b6692a0826ffe0b507ba25d80c9edd56edaeebc653",
+      "bundledBytes": 76663,
+      "bundledScope": "100점 만점 평가·토큰·시간 웹 제공본"
+    },
+    "보고서_사용량.md": {
+      "sha256": "e20cfba0a22bef15d4e1a19921659f02fcde9e848b9b6c26d026aeac1adc1c2e",
+      "bytes": 55440,
+      "bundledSha256": "6cb463d34757b6cc57e23136eca95c981a3a651b0771b9a646a2b779f28e351f",
+      "bundledBytes": 38354,
+      "bundledScope": "100점 만점 평가·토큰·시간 웹 제공본"
+    },
+    "보고서_요금제.md": {
+      "sha256": "fd4a569c3cd5c6c65234e2fbd5fc8cd08ff0ddf2518c0e05c1d87cf8342ad9b8",
+      "bytes": 21126,
+      "bundledSha256": "fd4a569c3cd5c6c65234e2fbd5fc8cd08ff0ddf2518c0e05c1d87cf8342ad9b8",
+      "bundledBytes": 21126,
+      "bundledScope": "사용자 제공 요금제 이미지의 번역·비교 원문"
+    },
+    "보고서_토큰가격.md": {
+      "sha256": "9fca294098c99f1dbe56bcbbd7035e2f7231a19b9b083399b00ebc6657b72814",
+      "bytes": 12817,
+      "bundledSha256": "6ae1f72119d7916cd44259782cde3a339943a240bedc4671da50d3f2c72fa418",
+      "bundledBytes": 13909,
+      "bundledScope": "제공 리뷰 시험 원문과 사용자 지정 구독 지급량·현재 적용 단가"
+    },
+    "보고서_크레딧.md": {
+      "originalFile": "보고서_사용량.md",
+      "sha256": "e20cfba0a22bef15d4e1a19921659f02fcde9e848b9b6c26d026aeac1adc1c2e",
+      "bytes": 55440,
+      "bundledSha256": "560167cc623e420e4bb7d40c45a40e586c638f98b8b49114960053abb7440135",
+      "bundledBytes": 2248,
+      "bundledScope": "HRMS 개발·검토 크레딧과 범위 발췌·정리"
+    }
+  },
+  "tokenTableHeaders": [
+    "프로젝트",
+    "구간",
+    "전체 입력 IT",
+    "일반 입력 I",
+    "캐시 읽기 R",
+    "캐시 쓰기 W",
+    "출력 O",
+    "출력 안 추론",
+    "IT+O",
+    "범위"
+  ],
+  "acceptanceCriteria": [
+    {
+      "id": "A01",
+      "scenario": "새 볼륨에서 Compose 빌드·기동",
+      "sourceGroup": "인프라"
+    },
+    {
+      "id": "A02",
+      "scenario": "app·mysql 호스트 포트 확인",
+      "sourceGroup": "인프라"
+    },
+    {
+      "id": "A03",
+      "scenario": "중지·재기동 및 app 단독 재시작",
+      "sourceGroup": "인프라"
+    },
+    {
+      "id": "A04",
+      "scenario": "유효한 형식의 정상·잘못된 비밀번호·비활성 계정 로그인과 형식 오류",
+      "sourceGroup": "인증·권한"
+    },
+    {
+      "id": "A05",
+      "scenario": "미로그인 GET·로그인 상태의 CSRF 없는 POST·로그아웃 후 GET",
+      "sourceGroup": "인증·권한"
+    },
+    {
+      "id": "A06",
+      "scenario": "직원이 계정/역할 변경 API 직접 호출",
+      "sourceGroup": "인증·권한"
+    },
+    {
+      "id": "A07",
+      "scenario": "직원이 다른 직원 ID·근태·휴가 조회",
+      "sourceGroup": "인증·권한"
+    },
+    {
+      "id": "A08",
+      "scenario": "직원 신규·동일 사번·동일 이메일·잘못된 이메일",
+      "sourceGroup": "조직·조회"
+    },
+    {
+      "id": "A09",
+      "scenario": "직원 검색·복합 필터·페이지·빈 결과",
+      "sourceGroup": "조직·조회"
+    },
+    {
+      "id": "A10",
+      "scenario": "관리자 지정 직원 이동·재직 직원 참조 조직 비활성",
+      "sourceGroup": "조직·조회"
+    },
+    {
+      "id": "A11",
+      "scenario": "본인 프로필에 role·departmentId 주입",
+      "sourceGroup": "인증·권한"
+    },
+    {
+      "id": "A12",
+      "scenario": "출근→재출근→퇴근→재퇴근, 출근 전 퇴근",
+      "sourceGroup": "근태"
+    },
+    {
+      "id": "A13",
+      "scenario": "동시에 같은 직원 출근 두 번",
+      "sourceGroup": "근태"
+    },
+    {
+      "id": "A14",
+      "scenario": "테스트 고정 시각으로 근무 분·업무 날짜 확인",
+      "sourceGroup": "근태"
+    },
+    {
+      "id": "A15",
+      "scenario": "목~다음 월 휴가 신청",
+      "sourceGroup": "연차"
+    },
+    {
+      "id": "A16",
+      "scenario": "연도 넘김·역전·주말만·과거 시작·잔액 행 없음",
+      "sourceGroup": "연차"
+    },
+    {
+      "id": "A17",
+      "scenario": "잔액 부족·기존 대기/승인 구간 겹침",
+      "sourceGroup": "연차"
+    },
+    {
+      "id": "A18",
+      "scenario": "잔여 2일에서 겹치지 않는 2일 신청 두 개 동시 실행",
+      "sourceGroup": "연차"
+    },
+    {
+      "id": "A19",
+      "scenario": "정상 승인·반려·신청자 대기 취소",
+      "sourceGroup": "연차"
+    },
+    {
+      "id": "A20",
+      "scenario": "본인 승인·타 부서 관리자 승인",
+      "sourceGroup": "인증·권한"
+    },
+    {
+      "id": "A21",
+      "scenario": "동일 신청 동시 승인·승인 후 재처리",
+      "sourceGroup": "연차"
+    },
+    {
+      "id": "A22",
+      "scenario": "사용+예약보다 작은 부여량으로 변경",
+      "sourceGroup": "연차"
+    },
+    {
+      "id": "A23",
+      "scenario": "업무 변경 강제 실패·롤백 후 감사 확인",
+      "sourceGroup": "감사"
+    },
+    {
+      "id": "A24",
+      "scenario": "두 사용자가 같은 직원 version으로 수정",
+      "sourceGroup": "조직·조회"
+    },
+    {
+      "id": "A25",
+      "scenario": "API 호출 후 화면·대시보드 재조회",
+      "sourceGroup": "화면"
+    },
+    {
+      "id": "A26",
+      "scenario": "다른 MODEL_KEY의 Compose 두 개를 동시 기동·같은 브라우저에서 각각 로그인",
+      "sourceGroup": "인프라"
+    },
+    {
+      "id": "A27",
+      "scenario": "로그인 중 역할 변경·계정 비활성·직원 퇴사",
+      "sourceGroup": "인증·권한"
+    },
+    {
+      "id": "A28",
+      "scenario": "활성 ADMIN 2명 동시 비활성·역할 변경",
+      "sourceGroup": "인증·권한"
+    },
+    {
+      "id": "A29",
+      "scenario": "직원 부서 이동과 기존 부서장 승인 동시 실행",
+      "sourceGroup": "연차"
+    },
+    {
+      "id": "A30",
+      "scenario": "대기 휴가가 있는 직원 퇴사 시도",
+      "sourceGroup": "조직·조회"
+    },
+    {
+      "id": "A31",
+      "scenario": "시작일이 지난 대기 건 승인·반려·취소",
+      "sourceGroup": "연차"
+    },
+    {
+      "id": "A32",
+      "scenario": "같은 새 연도 잔액의 동일 일수 동시 PUT→재PUT→부여 변경",
+      "sourceGroup": "연차"
+    },
+    {
+      "id": "A33",
+      "scenario": "HR·관리자·직원의 감사·휴가 사유 접근",
+      "sourceGroup": "인증·권한"
+    },
+    {
+      "id": "A34",
+      "scenario": "같은 version으로 조직·계정·본인 연락처 수정",
+      "sourceGroup": "조직·조회"
+    },
+    {
+      "id": "A35",
+      "scenario": "로그인·로그아웃 뒤 CSRF 갱신과 토큰 미갱신",
+      "sourceGroup": "인증·권한"
+    },
+    {
+      "id": "A36",
+      "scenario": "서울 자정 전후의 오늘 근태·이전 날짜 미퇴근",
+      "sourceGroup": "근태"
+    },
+    {
+      "id": "A37",
+      "scenario": "DB 중단·복구 및 app 컨테이너 재생성",
+      "sourceGroup": "인프라"
+    },
+    {
+      "id": "A38",
+      "scenario": "seed 중간 실패·재기동·초기화 완료 후 수정",
+      "sourceGroup": "인프라"
+    },
+    {
+      "id": "A39",
+      "scenario": "필터 경계·미지원 정렬·잘못된 version·범위 밖 ID",
+      "sourceGroup": "조직·조회"
+    },
+    {
+      "id": "A40",
+      "scenario": "S01~S10의 권한별 주요 흐름·직접 URL·1440×900/768px 화면·D01~D12",
+      "sourceGroup": "화면"
+    }
+  ],
+  "limitsTable": {
+    "headers": [
+      "항목",
+      "문제",
+      "보고서 처리"
+    ],
+    "rows": [
+      [
+        "집계 단계 중복",
+        "호출·세션·누적값과 캐시·추론 부분집합",
+        "한 계층만 합산. 추론은 출력에 포함하며 다시 더하지 않음."
+      ],
+      [
+        "요청 귀속",
+        "DeepSeek·HY4의 프록시는 모델·시간창 기준",
+        "수치 재현과 과제 전용 귀속을 구분. UI·프록시 관측을 합치지 않음."
+      ],
+      [
+        "실패 호출 누락",
+        "HY4 실패·취소7건 usage 미수집",
+        "관측 소계만 제시. 전체 토큰은 null이며 미수집을0으로 처리하지 않음."
+      ],
+      [
+        "후속 문서 제외",
+        "HY4 W4문서2,235,446토큰 및 이전 Balanced 문서 응답",
+        "개발·코드 검토와 분리. HY4 W2단계 미분류는 별도 보존."
+      ],
+      [
+        "Kimi 시간 기준",
+        "UI152분48초와 기존 Clock142분47초의 차이10분1초",
+        "원본 이미지와 대조한 UI를 대표값으로 채택. 서로 더하거나 차이를 입력 대기로 추정하지 않음."
+      ],
+      [
+        "Kimi 보조 agent",
+        "agent3건의 모델·토큰·UI 포함 관계 미확인",
+        "52,185,445토큰은 UI 소계이며 전체 토큰은 null."
+      ],
+      [
+        "UI·프록시 범위 차이",
+        "DeepSeek UI10,062,873토큰과 프록시76,426,592토큰",
+        "두 관측을 별도로 보존. 그래프는 기존 개발·검토 프록시 창이며 전체는 미확인."
+      ],
+      [
+        "대기 오분류",
+        "도구 없는 구간이나 Elapsed 차감 잔여",
+        "사용자 대기 이벤트가 없으면 null. 전체 경과를 순수 AI 작업으로 바꾸지 않음."
+      ],
+      [
+        "평가 시점",
+        "기존5개는11월24일, Balanced는11월25일 평가",
+        "이전5개를 이번에 모두 재시험한 것으로 표시하지 않음."
+      ],
+      [
+        "서로 다른 실행 조건",
+        "모델별 캐시·도구·수정 이력 차이",
+        "관측량 순위와 모델 자체 효율 순위를 구분. 전체 효율 순위는 만들지 않음."
+      ]
+    ]
+  },
+  "pricing": {
+    "currency": "USD",
+    "sourceDate": "2026-11-25",
+    "sourceUrl": "sources/보고서_요금제.html",
+    "sourceNote": "사용자가 제공한 요금제 이미지 번역·비교 문서 기준. 실시간 결제 화면을 조회한 가격이 아닙니다.",
+    "plans": [
+      {
+        "id": "pro",
+        "name": "Personal Pro",
+        "audience": "개인용 · 1명",
+        "referenceMonthlyCents": 2000,
+        "listedMonthlyCents": 1000,
+        "yearlyCents": 9600,
+        "referenceUnconfirmed": true,
+        "baseCredits": 1000,
+        "bonusCredits": 1000,
+        "bonusNote": "문서에 기간 한정 표시 없음 · 지속 여부 미확인",
+        "features": [
+          "일일 활동 보상 50크레딧/일",
+          "전체 모델 접근",
+          "무제한 코드 자동 완성"
+        ],
+        "featureTitle": "개인 개발 기능",
+        "dailyReward": 50,
+        "featureHighlight": "일일 활동 보상 50크레딧/일"
+      },
+      {
+        "id": "team",
+        "name": "Business Team",
+        "audience": "기업·팀용 · 1좌석",
+        "referenceMonthlyCents": 4000,
+        "listedMonthlyCents": 4000,
+        "yearlyCents": 48000,
+        "referenceUnconfirmed": false,
+        "baseCredits": 1000,
+        "bonusCredits": 1000,
+        "bonusNote": "기간 한정 보너스 · 종료일 미표기",
+        "features": [
+          "구독·구성원별 사용량 관리",
+          "SSO·조직 구조 관리",
+          "기업용 모델 구성·보안·감사"
+        ],
+        "featureTitle": "조직 운영 기능",
+        "dailyReward": null,
+        "featureHighlight": "구독·구성원별 사용량 관리"
+      }
+    ]
+  },
+  "tokenPricing": {
+    "currency": "USD",
+    "sourceUrl": "sources/보고서_토큰가격.html",
+    "basis": "mixed-credits-and-token-estimate",
+    "denominator": "displayed-dev-review-total-including-cache",
+    "trialDates": [
+      "2026-11-20",
+      "2026-11-25"
+    ],
+    "rates": {
+      "gpt": {
+        "alias": "gpt-6.1-sol",
+        "usdPerMillion": 0.3145,
+        "basis": "사용자 지정: 구독요금[$100] ÷ (주당 토큰지급량[74M] × 지급횟수[4.3주]) ≈ 1M당 약 $0.3145",
+        "method": "tokens",
+        "subscription": {
+          "monthlyUsd": 100,
+          "weeklyTokensMillion": 74,
+          "weeks": 4.3
+        },
+        "compactFormula": "구독 $100 ÷ (주 74M × 4.3주)",
+        "sourceFile": "사용자 제공 구독료·토큰 지급량 (2026-11-26)"
+      },
+      "opus": {
+        "alias": "claude-opus-5-5",
+        "usdPerMillion": 0.214,
+        "basis": "사용자 지정: 구독요금[$100] ÷ (주당 토큰지급량[109M] × 지급횟수[4.3주]) ≈ 1M당 약 $0.214",
+        "method": "tokens",
+        "subscription": {
+          "monthlyUsd": 100,
+          "weeklyTokensMillion": 109,
+          "weeks": 4.3
+        },
+        "compactFormula": "구독 $100 ÷ (주 109M × 4.3주)",
+        "sourceFile": "사용자 제공 구독료·토큰 지급량 (2026-11-26)"
+      },
+      "deepseek": {
+        "alias": "deepseek-v4.1-flash",
+        "basis": "HRMS 개발·검토 기록 크레딧 × $0.04 (1,000크레딧 = $40)",
+        "method": "credits",
+        "usdPerCredit": 0.04,
+        "devCredits": 76.74,
+        "reviewCredits": 28.75,
+        "scope": "개발·검토 프록시 두 창. 별도 UI 10.40크레딧은 합산하지 않음.",
+        "sourceFile": "보고서_사용량.md"
+      },
+      "hy4": {
+        "alias": "hy4-preview",
+        "basis": "HRMS 개발·검토 기록 크레딧 × $0.04 (1,000크레딧 = $40)",
+        "method": "credits",
+        "usdPerCredit": 0.04,
+        "devCredits": 324.69,
+        "reviewCredits": 400.87,
+        "scope": "W1 개발 + W3 검토. W2 미분류 66.52·W4 문서 28.62크레딧은 제외.",
+        "sourceFile": "보고서_사용량.md"
+      },
+      "kimi": {
+        "alias": "kimi-k3.1-pro",
+        "basis": "HRMS 개발·검토 기록 크레딧 × $0.04 (1,000크레딧 = $40)",
+        "method": "credits",
+        "usdPerCredit": 0.04,
+        "devCredits": 709.34,
+        "reviewCredits": 569.08,
+        "scope": "개발·검토 주 UI. 별도 agent 21,277크레딧은 포함·중복 관계 미확인으로 제외.",
+        "sourceFile": "보고서_사용량.md"
+      },
+      "balanced": {
+        "alias": "balanced-model",
+        "basis": "HRMS 개발·검토 기록 크레딧 × $0.04 (1,000크레딧 = $40)",
+        "method": "credits",
+        "usdPerCredit": 0.04,
+        "devCredits": 562.32,
+        "reviewCredits": 255.91,
+        "scope": "11월25일 새 실행 UI 전사 2건. 이전 실행·문서 응답 크레딧과 합산하지 않음.",
+        "sourceFile": "보고서_사용량.md"
+      }
+    },
+    "usdPerCredit": 0.04,
+    "creditSourceUrl": "sources/보고서_크레딧.html",
+    "creditComparison": {
+      "subscriptionUsd": 40,
+      "baseCredits": 1000,
+      "bonusCredits": 1000,
+      "activityCredits": 1500,
+      "activityDays": 30
+    }
+  },
+  "appendixFile": "appendix/code-review.json"
+}
